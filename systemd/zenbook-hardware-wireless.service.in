@@ -1,0 +1,50 @@
+# Managed by asus-healthytable-linux
+# SPDX-License-Identifier: GPL-2.0-only
+[Unit]
+Description=Read-only Zenbook Wi-Fi capability and signal metadata
+After=NetworkManager.service wpa_supplicant.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -E -s -B @RUNTIME@/export_wireless.py
+WorkingDirectory=/
+# uid 0 only to read the root-owned 0700 debugfs ieee80211 station files and
+# the 0600 per-boot BSS key secret; no capabilities at all.
+User=root
+RuntimeDirectory=zenbook-hardware-metrics
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=yes
+# The cache is deliberately world-readable; the BSS key secret is 0600.
+UMask=0022
+TimeoutStartSec=15
+CapabilityBoundingSet=
+AmbientCapabilities=
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+PrivateIPC=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+KeyringMode=private
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @mount @module @reboot @swap @debug @cpu-emulation @obsolete @clock
+SystemCallErrorNumber=EPERM
+# The exporter reads NetworkManager/wpa_supplicant over the system D-Bus
+# socket, sysfs and debugfs only; it runs no iw/nl80211 query.
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+DevicePolicy=closed
+ReadWritePaths=/run/zenbook-hardware-metrics

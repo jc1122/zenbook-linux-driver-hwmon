@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# REUSE (https://reuse.software) licensing labels for files that cannot carry
+# an SPDX header. Source, script and configuration files carry their own
+# SPDX-License-Identifier line; the project default is GPL-2.0-only, and files
+# marked MIT in their header are MIT.
+version = 1
+
+# Copyright for every file in the repository.
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 jc1122"
+
+# JSON has no comment syntax; documentation is labelled here rather than
+# in-file.
+[[annotations]]
+path = ["**/*.json", "**/*.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 jc1122"
+SPDX-License-Identifier = "GPL-2.0-only"
+
+# Vitals method snippets: this project's own work. They are inserted verbatim
+# into an installed copy of the Vitals extension and matched byte-for-byte on
+# upgrade (tools/install-vitals.py), so they carry no in-file header.
+[[annotations]]
+path = "integrations/vitals/*-method*.txt"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 jc1122"
+SPDX-License-Identifier = "GPL-2.0-only"
+
+# GNOME Shell bridge runtime files: tools/install-bridge.py recognises the
+# installed copies by SHA-256, so they are labelled here to keep them unchanged.
+[[annotations]]
+path = ["gnome-bridge/extension.js", "gnome-bridge/num-lock.mjs", "gnome-bridge/windows.mjs"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 jc1122"
+SPDX-License-Identifier = "GPL-2.0-only"

@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Blocking ruff profile used only by CI (`ruff check --config tools/ci/ruff.toml .`).
+# Kept out of the repository root so local editor/agent runs are unchanged.
+#
+# Correctness and security rules only; no style. Every rule here passes on the
+# current code, so the gate catches regressions:
+#   E9    syntax/IO errors          F63  invalid comparisons
+#   F7    misplaced statements      F82  undefined names
+#   F811  redefinition of unused    F841 unused local variable
+#   B006  mutable default argument  B008 call in default argument
+#   B012  return/break in finally   S102 exec()
+#   S301  pickle loads              S307 eval()
+#   S506  unsafe yaml.load          S602/S604/S605 shell=True / os.system-style calls
+# B904 (raise from inside except) is not clean yet and stays advisory.
+# The broader advisory profile is tools/ci/ruff-advisory.toml.
+target-version = "py312"
+
+[lint]
+select = [
+    "E9", "F63", "F7", "F82", "F811", "F841",
+    "B006", "B008", "B012",
+    "S102", "S301", "S307", "S506", "S602", "S604", "S605",
+]

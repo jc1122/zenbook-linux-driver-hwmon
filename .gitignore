@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-2.0-only
+__pycache__/
+build/
+*.egg-info/
+dist/
+*.jsonl
+*.log
+source/*.o
+source/*.ko
+source/*.mod
+source/*.mod.c
+source/.*.cmd
+source/Module.symvers
+source/modules.order
+source/.tmp_versions/

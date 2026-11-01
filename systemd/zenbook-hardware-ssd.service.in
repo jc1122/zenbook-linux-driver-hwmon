@@ -1,0 +1,48 @@
+# Managed by asus-healthytable-linux
+# SPDX-License-Identifier: GPL-2.0-only
+[Unit]
+Description=Read-only Zenbook NVMe health metrics
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -E -s -B @RUNTIME@/export_ssd.py
+WorkingDirectory=/
+User=root
+RuntimeDirectory=zenbook-hardware-metrics
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=yes
+# The caches are deliberately world-readable; secrets in them are 0600 per file.
+UMask=0022
+TimeoutStartSec=45
+# smartctl's NVMe admin passthrough (Get Log Page) needs CAP_SYS_ADMIN; it uses
+# only ioctl() on the allowed namespace node, so no CAP_SYS_RAWIO or @raw-io.
+CapabilityBoundingSet=CAP_SYS_ADMIN
+AmbientCapabilities=
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateNetwork=yes
+PrivateIPC=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+KeyringMode=private
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @mount @module @reboot @swap @debug @cpu-emulation @obsolete @clock
+SystemCallErrorNumber=EPERM
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+DevicePolicy=closed
+@DEVICES@
+ReadWritePaths=/run/zenbook-hardware-metrics

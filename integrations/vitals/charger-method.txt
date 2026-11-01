@@ -1,0 +1,75 @@
+    _queryZenbookCharger(callback) {
+        if (this._zenbookChargerPending) return;
+        this._zenbookChargerPending = true;
+        const discover = this._zenbookChargerPath ? Promise.resolve(this._zenbookChargerPath) :
+            new FileModule.File('/sys/class/hwmon').list().then(files =>
+                Promise.all(files.map(async name => {
+                    const path = '/sys/class/hwmon/' + name;
+                    try { return (await new FileModule.File(path + '/name').read()).trim() === 'zenbook_ec' ? path : null; }
+                    catch (_) { return null; }
+                })).then(paths => paths.find(Boolean)));
+        discover.then(async path => {
+            if (!path) return;
+            this._zenbookChargerPath = path;
+            // Root-only readings arrive in one service VitalsMetrics() reply per refresh.
+            const [contract, sources, report] = await Promise.all([
+                new FileModule.File(path + '/pd_contract').read().then(x => JSON.parse(x)).catch(() => null),
+                new FileModule.File(path + '/pd_source_caps').read().then(x => JSON.parse(x)).catch(() => null),
+                this._zenbookServiceMetrics()
+            ]);
+            if (this._zenbookChargerDestroyed) return;
+            const input = serviceInputs(report, contract, chargerRows);
+            for (const row of [...chargerRows(contract, input.platformPower, input.chargerAdc), ...chargerExtraRows(input.chargerMetrics), ...pdSourceRows(sources),
+                    ...gaugeRows(input.gauge), ...gaugeExtraRows(input.gaugeExtra), ...sbsRows(input.sbs), ...lifetimeRows(input.lifetime), ...pdAlertRows(input.pdIdentity, chargerRows)])
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).catch(() => {
+            this._zenbookChargerPath = null;
+        }).finally(() => { this._zenbookChargerPending = false; });
+    }
+
+    _zenbookServiceMetrics() {
+        if (!this._zenbookMetricsSource) {
+            try { this._zenbookMetricsSource = metricsSource(dbusMetricsCall(Gio, GLib)); }
+            catch (_) { return Promise.resolve(null); }
+        }
+        return this._zenbookMetricsSource.get().catch(() => null);
+    }
+
+    _queryZenbookCPU(callback) {
+        if (this._zenbookCpuPending) return;
+        this._zenbookCpuPending = true;
+        new FileModule.File('/sys/devices/system/cpu').list().then(async names => {
+            const cpus = await Promise.all(names.filter(n => /^cpu[0-9]+$/.test(n)).map(async name => {
+                const values = await Promise.all(CPU_FIELDS.map(field =>
+                    new FileModule.File('/sys/devices/system/cpu/' + name + '/thermal_throttle/' + field).read().then(x => x.trim()).catch(() => null)));
+                return {cpu: Number(name.slice(3)), counters: Object.fromEntries(CPU_FIELDS.map((key, i) => [key, values[i]]))};
+            }));
+            if (this._zenbookChargerDestroyed) return;
+            for (const row of cpuRows(cpus, this._zenbookLastCpu || []))
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+            this._zenbookLastCpu = cpus;
+        }).catch(() => {
+            if (!this._zenbookChargerDestroyed) for (const row of cpuRows())
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+            this._zenbookLastCpu = [];
+        }).finally(() => { this._zenbookCpuPending = false; });
+    }
+
+    _queryZenbookSSD(callback) {
+        if (this._zenbookSsdPending) return;
+        this._zenbookSsdPending = true;
+        Promise.all([
+            new FileModule.File('/run/zenbook-hardware-metrics/ssd.json').read().then(x => JSON.parse(x)).catch(() => null),
+            new FileModule.File('/proc/uptime').read().then(x => Number(x.trim().split(/\s+/)[0])).catch(() => NaN)
+        ]).then(([data, uptime]) => {
+            if (this._zenbookChargerDestroyed) return;
+            const names = Array.isArray(data?.devices) ? data.devices.filter(x => x && /^nvme[0-9]+n[0-9]+$/.test(x.device)).map(x => x.device) : [];
+            this._zenbookSsdDevices = [...new Set([...(this._zenbookSsdDevices || []), ...names])];
+            for (const row of ssdRows(data, uptime, this._zenbookSsdDevices))
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).catch(() => {
+            if (!this._zenbookChargerDestroyed) for (const row of ssdRows(null, NaN, this._zenbookSsdDevices || []))
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).finally(() => { this._zenbookSsdPending = false; });
+    }
+

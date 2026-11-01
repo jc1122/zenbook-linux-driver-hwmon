@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "code": "75             unavailable('Unexpected modem object-name declaration.',errno.EPROTO)\n76         try:tree=XML.fromstring(raw)\n77         except XML.ParseError:unavailable('Invalid modem object-name XML.',errno.EPROTO)\n",
+      "col_offset": 17,
+      "end_col_offset": 36,
+      "filename": "./wwan.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 20,
+        "link": "https://cwe.mitre.org/data/definitions/20.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called",
+      "line_number": 76,
+      "line_range": [
+        76
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b313-b320-xml-bad-elementtree",
+      "test_id": "B314",
+      "test_name": "blacklist"
+    }
+  ]
+}

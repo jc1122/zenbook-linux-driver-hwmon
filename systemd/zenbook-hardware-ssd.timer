@@ -1,0 +1,13 @@
+# Managed by asus-healthytable-linux
+# SPDX-License-Identifier: GPL-2.0-only
+[Unit]
+Description=Refresh Zenbook NVMe health every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=60s
+AccuracySec=1s
+Unit=zenbook-hardware-ssd.service
+
+[Install]
+WantedBy=timers.target

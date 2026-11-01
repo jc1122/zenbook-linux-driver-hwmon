@@ -1,0 +1,27 @@
+    _queryZenbookFrequency(callback) {
+        if (this._zenbookFrequencyPending) return;
+        this._zenbookFrequencyPending = true;
+        const discover = this._zenbookFrequencyPath ? Promise.resolve(this._zenbookFrequencyPath) :
+            new FileModule.File('/sys/class/hwmon').list().then(files =>
+                Promise.all(files.map(async name => {
+                    const path = '/sys/class/hwmon/' + name;
+                    try { return (await new FileModule.File(path + '/name').read()).trim() === 'zenbook_ec' ? path : null; }
+                    catch (_) { return null; }
+                })).then(paths => paths.find(Boolean)));
+        discover.then(async path => {
+            if (!path || (await new FileModule.File(path + '/name').read()).trim() !== 'zenbook_ec') throw new Error('No qualified CPU frequency provider');
+            this._zenbookFrequencyPath = path;
+            const [data,power] = await Promise.all([
+                new FileModule.File(path + '/cpu_reported_frequency').read().then(x=>JSON.parse(x)).catch(()=>null),
+                new FileModule.File(path + '/cpu_package_power').read().then(x=>JSON.parse(x)).catch(()=>null)
+            ]);
+            if ((await new FileModule.File(path + '/name').read()).trim() !== 'zenbook_ec') throw new Error('CPU frequency provider changed');
+            if (!this._zenbookChargerDestroyed) for (const row of [...frequencyRows(data),...packagePowerRows(power)])
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).catch(() => {
+            this._zenbookFrequencyPath = null;
+            if (!this._zenbookChargerDestroyed) for (const row of [...frequencyRows(),...packagePowerRows()])
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).finally(() => { this._zenbookFrequencyPending = false; });
+    }
+

@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// cppcheck suppressions for the CI "cppcheck warnings" gate.
+// Each entry is a reviewed false positive or accepted test pattern; see
+// docs/STATIC_ANALYSIS.md ("Userspace C").
+//
+// Tests intentionally call the code under test inside assert().
+assertWithSideEffect:source/*_test.c
+// index/mode are only read after ht_read() returns 0, which always writes them.
+legacyUninitvar:source/healthytable_diagnostics.h
+// On ENOMEM the read loop is skipped (while (!error)), so buffer+used is never formed.
+nullPointerArithmeticOutOfMemory:lib/asus_healthytable.c

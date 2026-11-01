@@ -1,0 +1,2312 @@
+{
+  "module_version": "0.85.0",
+  "scope": "Native Linux API equivalents for ASUS UP3404VA.301; hardware protocols are model qualified. Windows/Wine binary compatibility is outside the owner-selected scope.",
+  "exports": {
+    "Adapter_Clear_Charger_Data": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "Adapter_Clear_Power_Data_Flag": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "Adapter_Read_ChampionPort_Watt": {
+      "status": "ported_native_availability",
+      "backend": "adapter_ratings",
+      "parity": "firmware_provider_required",
+      "evidence": "Original x86 rating functions require HealthyTable>=28 and absent ASUS1000, using bank12 two-byte pairs. DSTS0x1200f2 alternative is ARM64-only. Qualified UP3404VA.301 protocol15 returns explicit unsupported availability without WMI/EC rating requests.",
+      "verification": "original_full_export_branch_traces_with_version28_and_ARM_positive_controls; qualified_native_identity; typed_availability_regressions",
+      "validation": "original_full_export_branch_traces_with_version28_and_ARM_positive_controls; qualified_native_identity; typed_availability_regressions"
+    },
+    "Adapter_Read_Charger_Information": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_Charger_Interrupt": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "Adapter_Read_Contract_PDO": {
+      "status": "ported",
+      "backend": "native_oem",
+      "parity": "native_equivalent",
+      "validation": "live_value_returned",
+      "verification": "Original source accumulation and independent complete cache-byte/native/CLI/C comparison; unplug/ambiguity/error fixtures retained.",
+      "evidence": "Original32-bit little-endian PDO contract quantity; native qualified per-port EC contract cache with AC/validity/complete-field gates and connector selection. Negotiated limit, not instantaneous measurement."
+    },
+    "Adapter_Read_PDO": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live four source PDOs; both ports and unplug suppression passed",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO1": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live_value_returned; both ports",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO2": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live_value_returned; both ports",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO3": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live_value_returned; both ports",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO4": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live_value_returned; both ports",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO5": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live ENODATA: stock source advertises four slots; selector implemented",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO6": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live ENODATA: stock source advertises four slots; selector implemented",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO7": {
+      "status": "ported",
+      "backend": "pd_sources",
+      "units": "USB PD object",
+      "parity": "native_equivalent",
+      "validation": "live ENODATA: stock source advertises four slots; selector implemented",
+      "verification": "All seven selectors, counts1..7 and both ports/raw supply classes; full transport fault/unchanged-output gates; installed native/CLI/C versus independent complete source cache. Physical nonfixed contract remains unqualified.",
+      "evidence": "Original seven fixed wrappers select0..6 in shared little-endian DWORD reader (HealthyTable14+). Qualified native complete per-port RX_SOURCE_CAPS preserves raw objects, including nonfixed active contracts without guessed unit conversions. AC/validity/count/member/two-pass coherence retained."
+    },
+    "Adapter_Read_PDO_Watt": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_ADO": {
+      "status": "ported",
+      "units": "unsigned32 complete received Alert Data Object; not a current fault state or legacy cache byte",
+      "parity": "firmware_provider_required",
+      "evidence": "Original20e60 reads one DD6/26 cache byte with version/status gates; its meaning is not a confirmed byte selection from the full native32-bit Alert Data Object. Qualified firmware implements DD banks1..5 only, so default returns EOPNOTSUPP without a bank6 request. Explicit native_alert=true preserves the separate measured received ADO32 reader, active-contract bracket, freshness/reserved-bit checks and connector selection.",
+      "verification": "Original complete wrapper/packet field and static whole-bank firmware absence; strict selector/default-no-native-read tests, nonzero native ADO fixture and installed native/CLI/C checks. Original byte is not guessed from controller ADO.",
+      "validation": "original_byte_vs_native_ADO32_separation; qualified_bank_absence; native_alert_explicit_selector",
+      "backend": "pd_identity / adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Emark_Other": {
+      "status": "ported",
+      "units": "unsigned32 opaque fifth identity VDO; ENODATA if absent",
+      "parity": "hardware_provider_required",
+      "evidence": "Original bank6 slots37..3a header,3b..3e XID,3f..42 product,47..4a Other imply VDO index4. ACK and at least5 received VDOs are required. Original complete wrapper review: HealthyTable>=23 gate, fixed DD bank6/47..4a bytes, reverse-register accumulation into unsigned32, transport error returns0. Native retains typed unavailable instead of ambiguous0.",
+      "verification": "installed API returned ENODATA with no cable ACK; fifth-VDO extraction, short ACK and missing response tested",
+      "validation": "installed API returned ENODATA with no cable ACK; fifth-VDO extraction, short ACK and missing response tested",
+      "backend": "pd_identity"
+    },
+    "Adapter_Read_PD_Get_Emark_PID": {
+      "status": "ported",
+      "backend": "pd_identity",
+      "parity": "hardware_provider_required",
+      "evidence": "Fixed TPS65994BF received SOP-prime identity read via firmware broker, verified mode and length, AC/port-contract gates, exact VID/PID/XID VDO fields. No discovery command. Original complete wrapper review: HealthyTable>=23 gate, fixed DD bank6/41..42 bytes, reverse-register accumulation into unsigned16, transport error returns0. Native retains typed unavailable instead of ambiguous0.",
+      "verification": "installed fixed reader verified; private reads completed on both endpoints; current active cable response not_requested_or_pending",
+      "validation": "live ENODATA; no acknowledged cable identity"
+    },
+    "Adapter_Read_PD_Get_Emark_VID": {
+      "status": "ported",
+      "backend": "pd_identity",
+      "parity": "hardware_provider_required",
+      "evidence": "Fixed TPS65994BF received SOP-prime identity read via firmware broker, verified mode and length, AC/port-contract gates, exact VID/PID/XID VDO fields. No discovery command. Original complete wrapper review: HealthyTable>=23 gate, fixed DD bank6/37..3a bytes, reverse-register accumulation into unsigned32, transport error returns0. Native retains typed unavailable instead of ambiguous0.",
+      "verification": "Source wrapper211d0 confirms full32 original header; positive byte-order/high-bit and strict-selector/no-ACK tests; installed no-ACK native/CLI/C qualification in VALIDATION.md. Physical acknowledged identity remains unqualified.",
+      "validation": "live ENODATA; no acknowledged cable identity",
+      "units": "default unsigned16 vendor ID; optional raw_header true returns full unsigned32 ID Header VDO"
+    },
+    "Adapter_Read_PD_Get_Emark_XID": {
+      "status": "ported",
+      "backend": "pd_identity",
+      "parity": "hardware_provider_required",
+      "evidence": "Fixed TPS65994BF received SOP-prime identity read via firmware broker, verified mode and length, AC/port-contract gates, exact VID/PID/XID VDO fields. No discovery command. Original complete wrapper review: HealthyTable>=23 gate, fixed DD bank6/3b..3e bytes, reverse-register accumulation into unsigned32, transport error returns0. Native retains typed unavailable instead of ambiguous0.",
+      "verification": "installed fixed reader verified; private reads completed on both endpoints; current active cable response not_requested_or_pending",
+      "validation": "live ENODATA; no acknowledged cable identity"
+    },
+    "Adapter_Read_PD_Get_Source_Cap_Extend_FWVersion": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Source_Cap_Extend_HWVersion": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Source_Cap_Extend_PID": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Source_Cap_Extend_VID": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Source_Cap_Extend_XID": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Status_EventFlag": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_Get_Status_Temperature": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_PD_IC_PN": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_value_returned",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "Adapter_Read_Power_Big_Data_Config": {
+      "status": "ported_native_availability",
+      "units": "raw; explicit unavailable when firmware omits diagnostic bank",
+      "parity": "firmware_provider_required",
+      "evidence": "Qualified UP3404VA.301 firmware DD dispatcher: banks1..5/81..85 only; bank6 has no handler or response",
+      "verification": "complete_cached_firmware_DD_switch; bounded_scalar_negative_traces_and_positive_route_controls; native_qualified_identity_and_separate_support_mask",
+      "validation": "source_proven_unimplemented_on_qualified_firmware; native_availability_contract",
+      "backend": "adapter_diagnostics"
+    },
+    "Adapter_Read_Power_Data_Flag": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "Adapter_Read_Standard_Watt": {
+      "status": "ported_native_availability",
+      "backend": "adapter_ratings",
+      "parity": "firmware_provider_required",
+      "evidence": "Original x86 rating functions require HealthyTable>=28 and absent ASUS1000, using bank12 two-byte pairs. DSTS0x1200f2 alternative is ARM64-only. Qualified UP3404VA.301 protocol15 returns explicit unsupported availability without WMI/EC rating requests.",
+      "verification": "original_full_export_branch_traces_with_version28_and_ARM_positive_controls; qualified_native_identity; typed_availability_regressions",
+      "validation": "original_full_export_branch_traces_with_version28_and_ARM_positive_controls; qualified_native_identity; typed_availability_regressions"
+    },
+    "Adapter_Read_Sufficient_Watt": {
+      "status": "ported_native_availability",
+      "backend": "adapter_ratings",
+      "parity": "firmware_provider_required",
+      "evidence": "Original x86 rating functions require HealthyTable>=28 and absent ASUS1000, using bank12 two-byte pairs. DSTS0x1200f2 alternative is ARM64-only. Qualified UP3404VA.301 protocol15 returns explicit unsupported availability without WMI/EC rating requests.",
+      "verification": "original_full_export_branch_traces_with_version28_and_ARM_positive_controls; qualified_native_identity; typed_availability_regressions",
+      "validation": "original_full_export_branch_traces_with_version28_and_ARM_positive_controls; qualified_native_identity; typed_availability_regressions"
+    },
+    "Adapter_Set_Notify_Control": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "AppList_CpuUsage": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_property_comparator_positive_filter_limit_source; ranked_fixture_CPU_RSS_PID_identity_error_and_privacy_tests; statm_resident_counter_and_identity_bracket_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original WMI Name/IDProcess/PercentProcessorTime/WorkingSet and descending top5 positive CPU selection. Native visible-PID procfs stat/statm reader, no UID filter or command-line/environment reads. Explicit CPU tick/page units, PID reuse/interval/error and partial-ranking metadata; original presentation scaling/32-bit overflow not reproduced.",
+      "verification": "original_property_comparator_positive_filter_limit_source; ranked_fixture_CPU_RSS_PID_identity_error_and_privacy_tests; statm_resident_counter_and_identity_bracket_tests"
+    },
+    "AppList_HardwareConfig": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "source_property_GUID_and_public_SDK_method_order_verified; native_parser_partial_availability_and_pre_IO_validation_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original WmiMonitorBrightness.CurrentBrightness and default render endpoint scalar/mute contract; native per-backlight actual/max and default PipeWire software-volume setting with independent typed availability. Muted effective percentage zero; software amplification above100 is retained, not clamped.",
+      "verification": "source_property_GUID_and_public_SDK_method_order_verified; native_parser_partial_availability_and_pre_IO_validation_tests"
+    },
+    "AppList_MemUsage": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_property_comparator_positive_filter_limit_source; ranked_fixture_CPU_RSS_PID_identity_error_and_privacy_tests; statm_resident_counter_and_identity_bracket_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original WMI Name/IDProcess/PercentProcessorTime/WorkingSet and descending top10 positive resident memory selection. Native visible-PID procfs stat/statm reader, no UID filter or command-line/environment reads. Explicit CPU tick/page units, PID reuse/interval/error and partial-ranking metadata; original presentation scaling/32-bit overflow not reproduced.",
+      "verification": "original_property_comparator_positive_filter_limit_source; ranked_fixture_CPU_RSS_PID_identity_error_and_privacy_tests; statm_resident_counter_and_identity_bracket_tests"
+    },
+    "AppList_OpenWindows": {
+      "status": "ported",
+      "backend": "linux_services / desktop_windows",
+      "validation": "bridge4_JS_and_wire_schema_tests; selected_PID_and_reuse_tests; real_Shell_activation_pending; AT_SPI_partial_fallback",
+      "parity": "native_equivalent",
+      "evidence": "Original reports process name/title/CPU/memory/z-order/focus; native compositor Alt-Tab selection and stack plus scoped process counters. Titles need both the caller's include_titles and the desktop user's ~/.config/zenbook-hardware/bridge.json expose_window_titles:true (else EACCES, no AT-SPI title fallback). The bridge answers only session-UID callers running the installed runtime (or listed trusted_scripts); the client trusts it only when the pinned unique owner process is /usr/bin/gnome-shell.",
+      "verification": "bridge4_JS_and_wire_schema_tests; selected_PID_and_reuse_tests; caller_authorization_title_opt_in_and_Shell_owner_tests; real_Shell_activation_pending; AT_SPI_partial_fallback"
+    },
+    "App_Get_UWPApp": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original uninstall HKLM/HKCU native/WOW6432 paths and AppxAllUserStore registrations source-reviewed. Native package inventory exposes dpkg state/authoritative ABI width, separate independent/unknown architectures, Flatpak apps+runtimes/extensions and all installed snap revisions. Scope and provider/field availability explicit; no installed-empty inference on failure, host-architecture guess, installer/refresh or application execution.",
+      "verification": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests"
+    },
+    "App_Get_Win32App": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original uninstall HKLM/HKCU native/WOW6432 paths and AppxAllUserStore registrations source-reviewed. Native package inventory exposes dpkg state/authoritative ABI width, separate independent/unknown architectures, Flatpak apps+runtimes/extensions and all installed snap revisions. Scope and provider/field availability explicit; no installed-empty inference on failure, host-architecture guess, installer/refresh or application execution.",
+      "verification": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests"
+    },
+    "App_Get_Win32WOW6432App": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original uninstall HKLM/HKCU native/WOW6432 paths and AppxAllUserStore registrations source-reviewed. Native package inventory exposes dpkg state/authoritative ABI width, separate independent/unknown architectures, Flatpak apps+runtimes/extensions and all installed snap revisions. Scope and provider/field availability explicit; no installed-empty inference on failure, host-architecture guess, installer/refresh or application execution.",
+      "verification": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests"
+    },
+    "BatteryHealthyTable_ACStatus": {
+      "status": "linux_equivalent",
+      "units": "boolean",
+      "parity": "native_equivalent",
+      "evidence": "Fixed ACPI ADP1 online read: only0/1 are valid; provider failures remain errors. Dedicated query avoids full sensor snapshot.",
+      "verification": "Valid0/1 and missing/invalid/denied tests; installed native/CLI/C and sysfs agreement",
+      "validation": "live_value_returned",
+      "backend": "linux_services"
+    },
+    "BatteryHealthyTable_BatteryError": {
+      "status": "native_driver",
+      "units": "boolean",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_BatteryInformation": {
+      "status": "linux_equivalent",
+      "units": "opaque32-byte firmware cache",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed cache request DD81/5a/10, ready bit10, exact32 bytes DD1/60..7f, not OS battery summary.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads",
+      "requires_privilege": true
+    },
+    "BatteryHealthyTable_CellVoltage1": {
+      "status": "native_driver",
+      "units": "mV; 0 means cell absent",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_CellVoltage2": {
+      "status": "native_driver",
+      "units": "mV; 0 means cell absent",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_CellVoltage3": {
+      "status": "native_driver",
+      "units": "mV; 0 means cell absent",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_CellVoltage4": {
+      "status": "native_driver",
+      "units": "mV; 0 means cell absent",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_ChargingCurrent": {
+      "status": "native_driver",
+      "units": "mA",
+      "parity": "recovered_protocol",
+      "evidence": "Original movsx eax,bx: signed16 charging-current raw word; native SBS u16 is separate.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_ChargingVoltage": {
+      "status": "native_driver",
+      "units": "mV",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_Current": {
+      "status": "native_driver",
+      "units": "mA",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_CycleCount": {
+      "status": "native_driver",
+      "units": "count",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_DesignVoltage": {
+      "status": "native_driver",
+      "units": "mV",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_DeviceName": {
+      "status": "ported",
+      "units": "string",
+      "parity": "native_equivalent",
+      "evidence": "Exact target identity/firmware; fixed SBS READ0x20/21; two complete identical replies, inferred1..32-byte lengths,48-byte mailbox restoration and fault latch. Gauge identifier uses the original fourth ManufacturerName byte without vendor interpretation.",
+      "verification": "Live private probe recovered10/7-byte manufacturer/model;455 fault boundaries and five decoder/route tests; installed native/C and raw agreement checked",
+      "validation": "fixed SBS probe passed; native installation qualification documented in VALIDATION",
+      "backend": "battery_identity"
+    },
+    "BatteryHealthyTable_ECChipID": {
+      "status": "ported",
+      "units": "string",
+      "parity": "native_equivalent",
+      "evidence": "Original BB10 byte, valid zero numeric chip ID; distinct from four ASCII chip-name bytes.",
+      "verification": "source_property_and_units; valid_zero_and_partial_channel_tests; installed_scope_in_docs_VALIDATION",
+      "validation": "source_and_native_quantity_tests",
+      "backend": "linux_services / battery_summary"
+    },
+    "BatteryHealthyTable_ECChipName": {
+      "status": "native_driver",
+      "units": "opaque14-byte buffer with optional ASCII text",
+      "parity": "recovered_protocol",
+      "evidence": "Full original14-byte BB12..1f buffer; distinct from four-byte numeric EC_ReadEcChipName. Exception fragment fallthrough reviewed from retained full span.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_FullChargeCapacity": {
+      "status": "native_driver",
+      "units": "mAh",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_FullCharged": {
+      "status": "linux_equivalent",
+      "units": "boolean EC flag",
+      "parity": "recovered_protocol",
+      "evidence": "DD1/1 bit10; distinct from Linux Full status.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_GaugeIC": {
+      "status": "ported",
+      "units": "raw; no vendor interpretation",
+      "parity": "native_equivalent",
+      "evidence": "Exact target identity/firmware; fixed SBS READ0x20/21; two complete identical replies, inferred1..32-byte lengths,48-byte mailbox restoration and fault latch. Gauge identifier uses the original fourth ManufacturerName byte without vendor interpretation.",
+      "verification": "Live private probe recovered10/7-byte manufacturer/model;455 fault boundaries and five decoder/route tests; installed native/C and raw agreement checked",
+      "validation": "fixed SBS probe passed; native installation qualification documented in VALIDATION",
+      "backend": "battery_identity"
+    },
+    "BatteryHealthyTable_LidStatus": {
+      "status": "native_driver",
+      "units": "raw diagnostic value",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_ManufactureDate": {
+      "status": "native_driver",
+      "units": "SBS packed date",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_ManufactureName": {
+      "status": "ported",
+      "units": "string",
+      "parity": "native_equivalent",
+      "evidence": "Exact target identity/firmware; fixed SBS READ0x20/21; two complete identical replies, inferred1..32-byte lengths,48-byte mailbox restoration and fault latch. Gauge identifier uses the original fourth ManufacturerName byte without vendor interpretation.",
+      "verification": "Live private probe recovered10/7-byte manufacturer/model;455 fault boundaries and five decoder/route tests; installed native/C and raw agreement checked",
+      "validation": "fixed SBS probe passed; native installation qualification documented in VALIDATION",
+      "backend": "battery_identity"
+    },
+    "BatteryHealthyTable_ManufactureNameBySMBus": {
+      "status": "ported",
+      "units": "manufacturer string via existing HealthyTable transport",
+      "parity": "native_equivalent",
+      "evidence": "Exact target identity/firmware; fixed SBS READ0x20/21; two complete identical replies, inferred1..32-byte lengths,48-byte mailbox restoration and fault latch. Gauge identifier uses the original fourth ManufacturerName byte without vendor interpretation.",
+      "verification": "Live private probe recovered10/7-byte manufacturer/model;455 fault boundaries and five decoder/route tests; installed native/C and raw agreement checked",
+      "validation": "fixed SBS probe passed; native installation qualification documented in VALIDATION",
+      "backend": "battery_identity"
+    },
+    "BatteryHealthyTable_PFStatus": {
+      "status": "native_driver",
+      "units": "raw bitmask",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads",
+      "requires_privilege": true
+    },
+    "BatteryHealthyTable_PackageVoltage": {
+      "status": "native_driver",
+      "units": "mV",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_ReadVendorType": {
+      "status": "native_driver",
+      "units": "raw diagnostic value",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_ReadVersion": {
+      "status": "native_driver",
+      "units": "raw diagnostic value",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_RemainingCapacity": {
+      "status": "native_driver",
+      "units": "mAh",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_Rsoc": {
+      "status": "native_driver",
+      "units": "percent",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_SafetyStatus": {
+      "status": "native_driver",
+      "units": "raw bitmask",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads",
+      "requires_privilege": true
+    },
+    "BatteryHealthyTable_SerialNumber": {
+      "status": "native_driver",
+      "units": "integer",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_Temperature": {
+      "status": "native_driver",
+      "units": "0.1 K",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthyTable_TimeoutStatus": {
+      "status": "native_driver",
+      "units": "raw diagnostic value",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthy_Check_PFalarm": {
+      "status": "native_driver",
+      "units": "boolean legacy cache predicate",
+      "parity": "recovered_protocol",
+      "evidence": "DD1/5b bit7 AND NOT same status bit6; no DD1/1 BatteryError dependency.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "BatteryHealthy_Read_LifetimeBlock1": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "0.17 fixed firmware block worker; complete OEM32/8/26/32/32 layout and old-prefix agreement;48-byte IPC restoration, exact identity/firmware and two sentinel passes",
+      "verification": "installed complete raw payload; 886 injected communication failures; unmatched OEM field units stay unknown",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_LifetimeBlock3": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "Complete original version10/legacy-cache error/PF/refresh/ready and data helper review. Native fresh qualified manufacturer blocks preserve raw target payload and LE extrema quantities separately from broken legacy cache; no zero-filled failed bytes or guessed OEM tail units.",
+      "verification": "Retained fresh identity/layout/complete double-read/fault fixtures and installed native/CLI/C versus independent complete raw lifetime fields; original legacy-cache positive remains unavailable.",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_LifetimeBlock4": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "0.17 fixed firmware block worker; complete OEM32/8/26/32/32 layout and old-prefix agreement;48-byte IPC restoration, exact identity/firmware and two sentinel passes",
+      "verification": "installed complete raw payload; 886 injected communication failures; unmatched OEM field units stay unknown",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_LifetimeBlock5": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "0.17 fixed firmware block worker; complete OEM32/8/26/32/32 layout and old-prefix agreement;48-byte IPC restoration, exact identity/firmware and two sentinel passes",
+      "verification": "installed complete raw payload; 886 injected communication failures; unmatched OEM field units stay unknown",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_MaxCellDeltaVoltage": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "Complete original version10/legacy-cache error/PF/refresh/ready and data helper review. Native fresh qualified manufacturer blocks preserve raw target payload and LE extrema quantities separately from broken legacy cache; no zero-filled failed bytes or guessed OEM tail units.",
+      "verification": "Retained fresh identity/layout/complete double-read/fault fixtures and installed native/CLI/C versus independent complete raw lifetime fields; original legacy-cache positive remains unavailable.",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_MaxChargeCurrent": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "Complete original version10/legacy-cache error/PF/refresh/ready and data helper review. Native fresh qualified manufacturer blocks preserve raw target payload and LE extrema quantities separately from broken legacy cache; no zero-filled failed bytes or guessed OEM tail units.",
+      "verification": "Retained fresh identity/layout/complete double-read/fault fixtures and installed native/CLI/C versus independent complete raw lifetime fields; original legacy-cache positive remains unavailable.",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_MaxDischargeCurrent": {
+      "status": "ported",
+      "backend": "battery_diagnostics",
+      "parity": "native_equivalent",
+      "evidence": "Complete original version10/legacy-cache error/PF/refresh/ready and data helper review. Native fresh qualified manufacturer blocks preserve raw target payload and LE extrema quantities separately from broken legacy cache; no zero-filled failed bytes or guessed OEM tail units.",
+      "verification": "Retained fresh identity/layout/complete double-read/fault fixtures and installed native/CLI/C versus independent complete raw lifetime fields; original legacy-cache positive remains unavailable.",
+      "validation": "live_value_returned; partial block format explicit"
+    },
+    "BatteryHealthy_Read_PFStatus": {
+      "status": "native_driver",
+      "units": "raw firmware diagnostic",
+      "parity": "recovered_protocol",
+      "evidence": "Original read-request80, ready20, four DD1/5c..5f bytes; native U32 rather than hex string, preserve failure.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads",
+      "requires_privilege": true
+    },
+    "Battery_Get_LidStatus": {
+      "status": "linux_equivalent",
+      "units": "raw",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_ASOC": {
+      "status": "ported",
+      "units": "percent",
+      "parity": "native_equivalent",
+      "evidence": "Original summary helper FullChargedCapacity/DesignedCapacity unrounded fraction; native same-unit charge_full/charge_full_design.",
+      "verification": "source_property_and_units; valid_zero_and_partial_channel_tests; installed_scope_in_docs_VALIDATION",
+      "validation": "source_and_native_quantity_tests",
+      "backend": "linux_services / battery_summary"
+    },
+    "Battery_Read_Capacity": {
+      "status": "ported",
+      "units": "mAh",
+      "parity": "native_equivalent",
+      "evidence": "Original BATTERY_STATUS.Capacity is remaining capacity; native Linux remaining charge is explicitly labelled mAh, without inferred energy.",
+      "verification": "source_property_and_units; valid_zero_and_partial_channel_tests; installed_scope_in_docs_VALIDATION",
+      "validation": "source_and_native_quantity_tests",
+      "backend": "linux_services / battery_summary"
+    },
+    "Battery_Read_CapacityPercentage": {
+      "status": "linux_equivalent",
+      "units": "structured percent and legacy decile",
+      "parity": "native_equivalent",
+      "evidence": "Original remaining/full ratio times100, truncate then half-up decile; native exact ratio plus legacy bucket, no RSOC alias.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_CellVoltage": {
+      "status": "ported",
+      "units": "mV; 0 means cell absent",
+      "parity": "native_equivalent",
+      "evidence": "Original emits all four cell-channel values; native qualified EC channels1..4 retain independent availability and raw sentinels.",
+      "verification": "source_property_and_units; valid_zero_and_partial_channel_tests; installed_scope_in_docs_VALIDATION",
+      "validation": "source_and_native_quantity_tests",
+      "backend": "linux_services / battery_summary"
+    },
+    "Battery_Read_ChargingVoltage": {
+      "status": "native_driver",
+      "units": "mV",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_Current": {
+      "status": "native_driver",
+      "units": "mA",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_CycleCount": {
+      "status": "native_driver",
+      "units": "count",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_DesignVoltage": {
+      "status": "native_driver",
+      "units": "mV",
+      "parity": "native_equivalent",
+      "evidence": "Misleading original name: BATTERY_STATUS.Voltage at summary+8 is PRESENT voltage; native voltage_now/1000mV.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_DesignedCapacity": {
+      "status": "linux_equivalent",
+      "units": "mAh",
+      "parity": "native_equivalent",
+      "evidence": "Native charge_full_design/1000mAh, explicit Linux charge units vs Windows energy/relative capacity.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_FullChargedCapcity": {
+      "status": "native_driver",
+      "units": "mAh",
+      "parity": "native_equivalent",
+      "evidence": "Native charge_full/1000mAh, explicit charge source.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_ManufactureDate": {
+      "status": "native_driver",
+      "units": "ISO calendar date",
+      "parity": "recovered_protocol",
+      "evidence": "Decode packed SBS day/month/year to valid ISO date; no fabricated1980-01-01 on failure.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_ManufactureName": {
+      "status": "ported",
+      "units": "string",
+      "parity": "native_equivalent",
+      "evidence": "Exact target identity/firmware; fixed SBS READ0x20/21; two complete identical replies, inferred1..32-byte lengths,48-byte mailbox restoration and fault latch. Gauge identifier uses the original fourth ManufacturerName byte without vendor interpretation.",
+      "verification": "Live private probe recovered10/7-byte manufacturer/model;455 fault boundaries and five decoder/route tests; installed native/C and raw agreement checked",
+      "validation": "fixed SBS probe passed; native installation qualification documented in VALIDATION",
+      "backend": "battery_identity"
+    },
+    "Battery_Read_PackageVoltage": {
+      "status": "native_driver",
+      "units": "mV",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Battery_Read_Temperature": {
+      "status": "native_driver",
+      "units": "0.1 K",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "CPU_ReadCPUUsage": {
+      "status": "ported",
+      "backend": "linux_services / cpu_metadata",
+      "validation": "fraction_units_and_idle_busy_fault_tests; live_range",
+      "parity": "native_equivalent",
+      "evidence": "Original two GetSystemTimes samples/100ms return busy fraction0..1; native proc-stat interval excludes idle+iowait and guest double counting.",
+      "verification": "fraction_units_and_idle_busy_fault_tests; live_range"
+    },
+    "CPU_ReadCpuFrequency": {
+      "status": "ported",
+      "units": "MHz",
+      "parity": "native_equivalent",
+      "evidence": "Original Intel driver quantity: MSR198[14:8] P-state ratio times reference MHz. Native fixed CPU0 CPUID.16H ECX reference avoids original OC-mailbox write; read-only MSRs, explicit per-field errors. CPUFreq policy data remains separate.",
+      "verification": "Original DLL/primary driver full handler review, all byte-ratio boundaries and independent-field/invalid transport tests; native/CLI/C versus independent CPU0 read-only MSR/CPUID qualification in docs/VALIDATION.md.",
+      "validation": "live_value_returned",
+      "backend": "hardware_status"
+    },
+    "CPU_ReadCpuId": {
+      "status": "ported",
+      "backend": "linux_services / cpu_metadata",
+      "validation": "raw_CPUID_C_helper_and_vendor_check; argument_and_unavailability_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original IOCTL op21 executes CPUID EAX=input leaf/ECX0; native helper returns unsigned EAX/EBX/ECX/EDX with optional subleaf extension.",
+      "verification": "raw_CPUID_C_helper_and_vendor_check; argument_and_unavailability_tests"
+    },
+    "CPU_ReadCpuMaxFrequency": {
+      "status": "ported",
+      "units": "MHz",
+      "parity": "native_equivalent",
+      "evidence": "Original Intel driver quantity: MSR1ad[7:0] single-active-core turbo ratio times reference MHz. Native fixed CPU0 CPUID.16H ECX reference avoids original OC-mailbox write; read-only MSRs, explicit per-field errors. CPUFreq policy data remains separate.",
+      "verification": "Original DLL/primary driver full handler review, all byte-ratio boundaries and independent-field/invalid transport tests; native/CLI/C versus independent CPU0 read-only MSR/CPUID qualification in docs/VALIDATION.md.",
+      "validation": "live_value_returned",
+      "backend": "hardware_status"
+    },
+    "CPU_ReadCpuVoltage": {
+      "status": "ported",
+      "backend": "native_oem",
+      "parity": "native_equivalent",
+      "evidence": "Original ASUS driver IOCTL80102080 statically reads MSR198 bits47:32 with float1/8192 and double1000. Native same P-state quantity rounded to mV; not independent rail ADC. DSTS present-bit fallback remains separate.",
+      "verification": "Primary driver source constants/dispatch and read-only native MSR conversion; native/CLI/C/public-hwmon qualification with changing values kept separate.",
+      "validation": "original_driver_IOCTL_MSR198_scaling_trace; native_hwmon_in6_millivolt_conversion; installed_native_CLI_C_live_value"
+    },
+    "CPU_ReadRegCPUInfo": {
+      "status": "ported",
+      "backend": "linux_services / cpu_metadata",
+      "validation": "first_processor_selection_and_live_model_name",
+      "parity": "native_equivalent",
+      "evidence": "Original CentralProcessor/0 ProcessorNameString; native first processor model name string.",
+      "verification": "first_processor_selection_and_live_model_name"
+    },
+    "EC_ReadEcChipId": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "EC_ReadEcChipName": {
+      "status": "native_driver",
+      "units": "packed U32",
+      "parity": "recovered_protocol",
+      "evidence": "Four BB12..15 bytes packed big endian into U32; native ASCII metadata remains separately available.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "EC_ReadEcFwRev": {
+      "status": "native_driver",
+      "units": "numeric family selector",
+      "parity": "recovered_protocol",
+      "evidence": "BB51 vendor clear high bit selectsffff; high-bit variant hex normalization7fff with AB/AC/CF exceptions. Not ASCII firmware string.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "EC_ReadProjectInformation": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "GPNV_Clear_CSC_Repair_Flag": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_plan_verified; writes_simulated_only"
+    },
+    "GPNV_Get_ActivatedTime": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_value_returned",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_value_returned"
+    },
+    "GPNV_Get_HEAL_table": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_value_returned",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_value_returned"
+    },
+    "GPNV_Get_HEAL_table_CSC_Repair_Flag": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_value_returned",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_value_returned"
+    },
+    "GPNV_Get_ManufacturedTime": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_value_returned",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_value_returned"
+    },
+    "GPNV_Get_RandomUUID": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_value_returned",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_value_returned"
+    },
+    "GPNV_Set_ActivatedTime": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_plan_verified; writes_simulated_only"
+    },
+    "GPNV_Set_ManufacturedTime": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_plan_verified; writes_simulated_only"
+    },
+    "GPNV_Set_RandomUUID": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_plan_verified; writes_simulated_only"
+    },
+    "GetApplist_UWP": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original uninstall HKLM/HKCU native/WOW6432 paths and AppxAllUserStore registrations source-reviewed. Native package inventory exposes dpkg state/authoritative ABI width, separate independent/unknown architectures, Flatpak apps+runtimes/extensions and all installed snap revisions. Scope and provider/field availability explicit; no installed-empty inference on failure, host-architecture guess, installer/refresh or application execution.",
+      "verification": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests"
+    },
+    "GetApplist_x64": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original uninstall HKLM/HKCU native/WOW6432 paths and AppxAllUserStore registrations source-reviewed. Native package inventory exposes dpkg state/authoritative ABI width, separate independent/unknown architectures, Flatpak apps+runtimes/extensions and all installed snap revisions. Scope and provider/field availability explicit; no installed-empty inference on failure, host-architecture guess, installer/refresh or application execution.",
+      "verification": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests"
+    },
+    "GetApplist_x86": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original uninstall HKLM/HKCU native/WOW6432 paths and AppxAllUserStore registrations source-reviewed. Native package inventory exposes dpkg state/authoritative ABI width, separate independent/unknown architectures, Flatpak apps+runtimes/extensions and all installed snap revisions. Scope and provider/field availability explicit; no installed-empty inference on failure, host-architecture guess, installer/refresh or application execution.",
+      "verification": "original_registry_roots_paths_fields_and_package_registration_contract; typed_failure_architecture_parser_partial_scope_and_actual_Unix_HTTP_read_only_transport_tests"
+    },
+    "GetDriverVersion": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Validated fixed loaded-module metadata read with identity bracket; missing/empty/invalid data remains an error, legitimate zero refcount is retained.",
+      "verification": "Targeted missing/invalid/identity tests and installed metadata readback; no new driver unload during live capture"
+    },
+    "GetEEPROM_Data": {
+      "status": "ported_native_protocol",
+      "backend": "firmware_queries",
+      "validation": "native_collection_implemented_and_protocol_tested; current_version_query_unsupported; positive_hardware_table_unqualified",
+      "parity": "firmware_provider_required",
+      "evidence": "Recovered fixed scalar table selectors and E5 buffer frames:5a/a5 magic,9+byte6 length, two consecutive unusable replies end the original loop. Native collector has bounded explicit partial results; fixed root transport is guarded by actual probe-time version. Current .301 version remains firmware-unsupported, without E5 calls.",
+      "verification": "original_instruction_scalar_traces; old/new_version_register_fixtures; partial_event/error/budget/date tests; kernel_frame_bounds_and_selector_guards; installed_unsupported_version_no_buffer_IO_proof"
+    },
+    "GetInfVersion": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original selects present ASUS System Control Interface V2 and its installed DriverVersion. Native follows actual platform binding and installed current-kernel module metadata, with declared-version versus in-tree-kernel-release kind. No frontend constant or guessed absent-provider version.",
+      "verification": "Binding/file/kernel/version/parser/change fixtures and installed independent modinfo/native/CLI/C qualification; read-only, no module loading.",
+      "units": "structured installed system-control driver version metadata"
+    },
+    "GetIoDllVersion": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Native Linux provider in lifecycle/configuration",
+      "verification": "live_value_returned"
+    },
+    "GetNum_Key": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "parity": "native_equivalent",
+      "evidence": "Primary num_lock is the existing same-user GNOME default-seat keymap toggle through fixed read-only bridge3 GetNumLock. Unique owner/UID, owner process /usr/bin/gnome-shell (desktop_windows owner check), version/type checked and owner rechecked; the bridge itself answers only session-UID installed-runtime callers; no service activation, input event, write or Xwayland/LED substitute. Native input count and LED consensus retained separately with availability. Stage.get_context -> Clutter.Context.get_backend -> Backend.get_default_seat is target-GNOME50 qualified; Shell Meta.Backend is rejected as the wrong domain.",
+      "verification": "Seven Python transport/failure tests incl. same-user impostor owner rejection, strict JS getter tests and actual isolated GJS/D-Bus false/true qualification. Installed no-owner availability/native/CLI/C verification in docs/VALIDATION.md; owner GNOME activation/real toggle transition remain pending. Bridge3 context correction checked against installed Mutter18 class methods and GNOME50.1 keyboardManager source; isolated wire qualification uses the full stage/context chain.",
+      "validation": "session_toggle_transport_verified_owner_activation_pending"
+    },
+    "GetRefCount": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Validated fixed loaded-module metadata read with identity bracket; missing/empty/invalid data remains an error, legitimate zero refcount is retained.",
+      "verification": "Targeted missing/invalid/identity tests and installed metadata readback; no new driver unload during live capture"
+    },
+    "GetSENSOR_WMI_Data": {
+      "status": "ported",
+      "backend": "firmware_queries",
+      "parity": "native_equivalent",
+      "evidence": "Original p_sensor is raw DSTS0x60068, not a CPU voltage. The qualified module caches the fixed query and publishes valid zero separately from errors.",
+      "verification": "original_method_device_selector_recovered; typed_cache_no_root_no_RPC; zero_mask_preserved",
+      "validation": "cached_native_public_sensor_mask"
+    },
+    "GetUWPVersion": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "native_component_version_metadata",
+      "parity": "native_equivalent",
+      "evidence": "Native frontend release and bundled GNOME bridge protocol; Windows UWP is explicitly inapplicable.",
+      "verification": "native_component_version_metadata; active_session_availability_separate"
+    },
+    "GetXgmFw": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "parity": "hardware_provider_required",
+      "evidence": "Source-correct GC31/GC33 ff31/0076 fixed64-byte feature5a/a0 query. Open-descriptor identity and complete collection checks precede request; return31 firmware bytes from offsets2..32. Physical device absent remains ENODEV.",
+      "verification": "Exact packet/boundary/sentinel/full-reply/descriptor-hotplug/ambiguity/fault tests; physical responding XG Mobile qualification remains pending.",
+      "validation": "live_provider_unavailable"
+    },
+    "HealthyTable_FanCounts": {
+      "status": "native_driver",
+      "units": "count",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "HealthyTable_FanRPM": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "HealthyTable_GetFanTestMode": {
+      "status": "native_driver",
+      "units": "boolean",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "HealthyTable_Read_BoardTS0L_Temperature": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "HealthyTable_Read_Cpu_Temperature": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "HealthyTable_Read_Fan": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Original count-sized RPM array; qualified one-fan structured native result retained. Exception fragment fallthrough reviewed.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "HealthyTable_SetFanIndex": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original byte selector supports0..4; qualified native single-channel logical0 maps the existing raw selector1 without changing the firmware selector. Other channels require hardware qualification.",
+      "verification": "source + single-channel native/CLI/C checks; no selector mutation"
+    },
+    "HealthyTable_SetFanPwmDuty": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_same_value_write_and_readback",
+      "parity": "native_equivalent",
+      "evidence": "Original DD82/35 accepts a full byte. Native requests0..255 through guarded hwmon; stored request, mode and deferred automatic application are explicit. Raw fan writes remain prohibited.",
+      "verification": "all256 requests and fault/restoration software tests; installed staging and bounded manual test recorded separately"
+    },
+    "HealthyTable_SetFanTestMode": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_same_value_write_and_readback",
+      "parity": "native_equivalent",
+      "evidence": "Original shared mutex serializes DD82/31 manual/auto. Native kernel ownership, low-RPM/fault watchdog and verified automatic restoration preserve the hardware function; no general manual timer lease.",
+      "verification": "source + all-mode/fault software tests; bounded hardware restoration separately qualified"
+    },
+    "InitializeWinIo": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Validated fixed loaded-module metadata read with identity bracket; missing/empty/invalid data remains an error, legitimate zero refcount is retained.",
+      "verification": "Targeted missing/invalid/identity tests and installed metadata readback; no new driver unload during live capture"
+    },
+    "Power_PD_Charging": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Validated read-only UCSI online/status/selected USB type; true requires PD/PPS local sink input path. Unknown mandatory state remains error; optional electrical metadata is separate and not a measurement.",
+      "verification": "Targeted role/PD/PPS/offline/unknown/partial-error/hotplug tests plus installed native/CLI/C and sysfs comparisons"
+    },
+    "Power_Read_ACDCMode": {
+      "status": "linux_equivalent",
+      "units": "boolean",
+      "parity": "native_equivalent",
+      "evidence": "Fixed ACPI ADP1 online read: only0/1 are valid; provider failures remain errors. Dedicated query avoids full sensor snapshot.",
+      "verification": "Valid0/1 and missing/invalid/denied tests; installed native/CLI/C and sysfs agreement",
+      "validation": "live_value_returned",
+      "backend": "linux_services"
+    },
+    "Power_Set_Monitor_PowerDropped": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Full original fixed packet/version recipe reviewed in0.56. Monitor uses05/85; version24+ flag clearing uses observed mask at86/35; legacy clearing retained. No inferred bank6 zero-byte capability gate. Qualified .301 max-bank5 prevents absent-bank I/O.",
+      "verification": "All256 byte-version boundary/packet fixtures, fault injection and current installed native/CLI/C reads or digest-bound plans; no physical factory/control mutation and no new hardware allowlist."
+    },
+    "ProArt_Read_Cpu_Temperature": {
+      "status": "linux_equivalent",
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "ProArt_Read_Fan": {
+      "status": "linux_equivalent",
+      "parity": "recovered_protocol",
+      "evidence": "Original indexed scalar getter, defaultindex0; reject noninteger/negative or absent fan indices.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "RF_AP_MAC": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Current association BSSID bytes230..235 formatted as six octets, copied from class38 string; native returns lowercase BSSID. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_BTConnectedNum": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "Read-only connected metadata; absent class is not inferred.",
+      "parity": "native_equivalent",
+      "evidence": "Original helper941d0 enumerates connected devices without inquiry; type uses Class-of-Device major bits8..12. Native BlueZ connected rows retain optional raw/major Class, exact missing/invalid errors, known counts and pinned/rechecked unique owner.",
+      "verification": "Connected-only and optional Class/major/owner-change tests; known-empty current device census is separate from positive classification fixtures."
+    },
+    "RF_BTConnectedType": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "Read-only connected metadata; absent class is not inferred.",
+      "parity": "native_equivalent",
+      "evidence": "Original helper941d0 enumerates connected devices without inquiry; type uses Class-of-Device major bits8..12. Native BlueZ connected rows retain optional raw/major Class, exact missing/invalid errors, known counts and pinned/rechecked unique owner. Original941d0 sets Bluetooth bReturnConnected and classifies ClassOfDevice bits8..12; all31 indirect switch entries recovered, including known classes1..9 and31/default. Native BlueZ already supplies that major-class quantity; no radio scan requested.",
+      "verification": "Connected-only and optional Class/major/owner-change tests; known-empty current device census is separate from positive classification fixtures."
+    },
+    "RF_BTIsUsed": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "Read-only connected metadata; absent class is not inferred.",
+      "parity": "native_equivalent",
+      "evidence": "Original helper941d0 enumerates connected devices without inquiry; type uses Class-of-Device major bits8..12. Native BlueZ connected rows retain optional raw/major Class, exact missing/invalid errors, known counts and pinned/rechecked unique owner.",
+      "verification": "Connected-only and optional Class/major/owner-change tests; known-empty current device census is separate from positive classification fixtures."
+    },
+    "RF_Net_Connected_Type": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "Native physical type and partial coverage; not merely operstate up.",
+      "parity": "native_equivalent",
+      "evidence": "Original helper9e2a0 selects connected hardware non-tunnel Ethernet, WWANPP2, then WiFi. Native report uses device-backed stable Linux links plus existing NetworkManager DeviceType, with Ethernet/cellular/Wi-Fi priority, explicit partial/unknown state and no Internet/default-route claim.",
+      "verification": "Source helper review, physical/virtual/WWAN/IP-interface/priority/transition/identity/owner/error/deadline tests; current hardware outcome documented in VALIDATION.md.",
+      "units": "structured connected physical type report"
+    },
+    "RF_PhyMode": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "typed capability or cached measurement with explicit availability",
+      "parity": "native_equivalent",
+      "evidence": "Bounded existing-owner supplicant BSS cache, pinned NetworkManager association generation and mac80211 PHY/station identity. Root collector publishes only parsed metadata to a fresh root-owned cache; unprivileged monitoring never authenticates or scans. Highest enabled current kernel peer family, independent of instantaneous rate fallback. Exact legacy a/b/g is unavailable instead of guessed.",
+      "verification": "Standard rate/TLV/MCS/width/PPE, histogram boundaries/partial/dedup, boot-age/identity/owner/error and read-only collector tests; see VALIDATION.md for physical results.",
+      "units": "802.11 association peer family"
+    },
+    "RF_USBHDMIIsUsed": {
+      "status": "ported",
+      "backend": "linux_services / hdmi_presence",
+      "validation": "native_HDMI_provider_physical_positive_pending",
+      "parity": "native_equivalent",
+      "evidence": "Original94900 queries ROOT/WMI WmiMonitorConnectionParams VideoOutputTechnology5 and b7570 counts instances without Active filtering; wrapper95fb0 returns cached presence. Native cached DRM HDMI-A/B connection status is independent of USB, EDID and modesetting; DP downstream HDMI identity is not inferred. Explicit metric usb_display retains the separate USB/Type-C transport query.",
+      "verification": "Source helper and WMI enumeration review; HDMI transport/unknown/partial/transition/alias fixtures; current native/CLI/C qualification in VALIDATION.md."
+    },
+    "RF_USBISTYPEC": {
+      "status": "ported",
+      "backend": "linux_services / usb_inventory",
+      "parity": "native_equivalent",
+      "evidence": "Original9e730 and96030 use immediate parent-hub connection properties: bit3 Type-C, bit0 user-connectable; A is non-Type-C. Native follows validated device/port link with immediate parent/interface ancestry, connect_type visibility, _UPC and registered reciprocal peer/Type-C links. Host scope stays separate. Cached bcdUSB/device and active interface classes provide version distributions and mass-storage subset; no friendly-name guess or active descriptor request.",
+      "verification": "27 filesystem/API/identity/grouping/downstream/user-visibility/version/storage/error fixtures plus installed native/CLI/C and independent cached-kernel brackets in VALIDATION.md; physical downstream-dock/storage positives remain separate.",
+      "validation": "immediate_socket_vs_host; user_visibility; bcdUSB_and_storage_subsets; partial_metadata_and_identity_guards"
+    },
+    "RF_USBIsTranster": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original non-system disk-time predicate, not USB bytes. Default native measured queue-weighted disk time with integer>20 threshold/root backing exclusion; metric usb_traffic retains header-only USB measurements with explicit capture completeness/lower bound.",
+      "verification": "Complete wrapper/shared-helper source review; threshold/root/identity/reset/suspend/partial and usbmon loss/ABI/fault tests; installed qualification separately recorded.",
+      "validation": "live_value_returned"
+    },
+    "RF_USBNum": {
+      "status": "ported",
+      "backend": "linux_services / usb_inventory",
+      "validation": "immediate_socket_vs_host; user_visibility; bcdUSB_and_storage_subsets; partial_metadata_and_identity_guards",
+      "parity": "native_equivalent",
+      "evidence": "Original9e730 and96030 use immediate parent-hub connection properties: bit3 Type-C, bit0 user-connectable; A is non-Type-C. Native follows validated device/port link with immediate parent/interface ancestry, connect_type visibility, _UPC and registered reciprocal peer/Type-C links. Host scope stays separate. Cached bcdUSB/device and active interface classes provide version distributions and mass-storage subset; no friendly-name guess or active descriptor request.",
+      "verification": "27 filesystem/API/identity/grouping/downstream/user-visibility/version/storage/error fixtures plus installed native/CLI/C and independent cached-kernel brackets in VALIDATION.md; physical downstream-dock/storage positives remain separate."
+    },
+    "RF_USBPort": {
+      "status": "ported",
+      "backend": "linux_services / usb_inventory",
+      "validation": "immediate_socket_vs_host; user_visibility; bcdUSB_and_storage_subsets; partial_metadata_and_identity_guards",
+      "parity": "native_equivalent",
+      "evidence": "Original9e730 and96030 use immediate parent-hub connection properties: bit3 Type-C, bit0 user-connectable; A is non-Type-C. Native follows validated device/port link with immediate parent/interface ancestry, connect_type visibility, _UPC and registered reciprocal peer/Type-C links. Host scope stays separate. Cached bcdUSB/device and active interface classes provide version distributions and mass-storage subset; no friendly-name guess or active descriptor request.",
+      "verification": "27 filesystem/API/identity/grouping/downstream/user-visibility/version/storage/error fixtures plus installed native/CLI/C and independent cached-kernel brackets in VALIDATION.md; physical downstream-dock/storage positives remain separate."
+    },
+    "RF_USB_A_Num": {
+      "status": "ported",
+      "backend": "linux_services / usb_inventory",
+      "parity": "native_equivalent",
+      "evidence": "Original9e730 and96030 use immediate parent-hub connection properties: bit3 Type-C, bit0 user-connectable; A is non-Type-C. Native follows validated device/port link with immediate parent/interface ancestry, connect_type visibility, _UPC and registered reciprocal peer/Type-C links. Host scope stays separate. Cached bcdUSB/device and active interface classes provide version distributions and mass-storage subset; no friendly-name guess or active descriptor request.",
+      "verification": "27 filesystem/API/identity/grouping/downstream/user-visibility/version/storage/error fixtures plus installed native/CLI/C and independent cached-kernel brackets in VALIDATION.md; physical downstream-dock/storage positives remain separate.",
+      "validation": "immediate_socket_vs_host; user_visibility; bcdUSB_and_storage_subsets; partial_metadata_and_identity_guards"
+    },
+    "RF_USB_C_Num": {
+      "status": "ported",
+      "backend": "linux_services / usb_inventory",
+      "parity": "native_equivalent",
+      "evidence": "Original9e730 and96030 use immediate parent-hub connection properties: bit3 Type-C, bit0 user-connectable; A is non-Type-C. Native follows validated device/port link with immediate parent/interface ancestry, connect_type visibility, _UPC and registered reciprocal peer/Type-C links. Host scope stays separate. Cached bcdUSB/device and active interface classes provide version distributions and mass-storage subset; no friendly-name guess or active descriptor request.",
+      "verification": "27 filesystem/API/identity/grouping/downstream/user-visibility/version/storage/error fixtures plus installed native/CLI/C and independent cached-kernel brackets in VALIDATION.md; physical downstream-dock/storage positives remain separate.",
+      "validation": "immediate_socket_vs_host; user_visibility; bcdUSB_and_storage_subsets; partial_metadata_and_identity_guards"
+    },
+    "RF_WWAN_Access_Technology": {
+      "status": "ported",
+      "backend": "linux_services / wwan",
+      "validation": "native implementation tested; live modem absent",
+      "parity": "hardware_provider_required",
+      "evidence": "Original949b0 uses netsh interface plus homeprovider/connection/signal text parsing; wrappers select offsets20/0/40 respectively. Native typed ModemManager properties pin one existing unique owner; bounded object-name introspection avoids private inventories; owner/inventory and per-query SIM/radio context are rechecked. No activation, connect, scan, identifier or signal-setup query.",
+      "verification": "Typed technology/roaming/measured-signal tests plus XML, unique-owner, inventory/SIM/radio-transition, deadline and privacy transport tests; installed no-modem ENODEV; physical modem pending."
+    },
+    "RF_WWAN_Home_Provider": {
+      "status": "ported",
+      "backend": "linux_services / wwan",
+      "validation": "native implementation tested; live modem absent",
+      "parity": "hardware_provider_required",
+      "evidence": "Original949b0 uses netsh interface plus homeprovider/connection/signal text parsing; wrappers select offsets20/0/40 respectively. Native typed ModemManager properties pin one existing unique owner; bounded object-name introspection avoids private inventories; owner/inventory and per-query SIM/radio context are rechecked. No activation, connect, scan, identifier or signal-setup query.",
+      "verification": "Typed technology/roaming/measured-signal tests plus XML, unique-owner, inventory/SIM/radio-transition, deadline and privacy transport tests; installed no-modem ENODEV; physical modem pending."
+    },
+    "RF_WWAN_RSSI": {
+      "status": "ported",
+      "backend": "linux_services / wwan",
+      "validation": "native implementation tested; live modem absent",
+      "parity": "hardware_provider_required",
+      "evidence": "Original949b0 uses netsh interface plus homeprovider/connection/signal text parsing; wrappers select offsets20/0/40 respectively. Native typed ModemManager properties pin one existing unique owner; bounded object-name introspection avoids private inventories; owner/inventory and per-query SIM/radio context are rechecked. No activation, connect, scan, identifier or signal-setup query.",
+      "verification": "Typed technology/roaming/measured-signal tests plus XML, unique-owner, inventory/SIM/radio-transition, deadline and privacy transport tests; installed no-modem ENODEV; physical modem pending."
+    },
+    "RF_WiFiCardName": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original human WLAN/physical ifType71 adapter descriptions use identity-matched local PCI captions or device USB descriptors. Driver remains separate. PCI address/class/vendor/device and sysfs identity rechecked; absent descriptive names stay unavailable independently of link state.",
+      "verification": "Synthetic identity/name/error/USB tests and installed native/CLI/C physical caption qualification; no database download, network activation or configuration.",
+      "units": "structured human Wi-Fi card inventory with separate driver"
+    },
+    "RF_WiFiChannel": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "WlanQueryInterface opcode8 DWORD into class14; native maps validated primary MHz frequency to channel, including14/4.9/special6GHz. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_WiFiIsConnected": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Class0 set from WLAN interface connected-state==1. Native returns true for a verified association; errors/absence are not false disconnection. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_WiFiMaxRate": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "typed capability or cached measurement with explicit availability",
+      "parity": "native_equivalent",
+      "evidence": "Bounded existing-owner supplicant BSS cache, pinned NetworkManager association generation and mac80211 PHY/station identity. Root collector publishes only parsed metadata to a fresh root-owned cache; unprivileged monitoring never authenticates or scans. Original associated-AP capability quantity replaces observed Tx/Rx rate. Standard arithmetic, independent Rx/Tx MCS maps, GI assumptions and EHT scope explicit; never throughput or NIC-intersection rate.",
+      "verification": "Standard rate/TLV/MCS/width/PPE, histogram boundaries/partial/dedup, boot-age/identity/owner/error and read-only collector tests; see VALIDATION.md for physical results.",
+      "units": "Mbit/s, derived AP HT/VHT/HE capability ceiling"
+    },
+    "RF_WiFiRssi": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Matching current SSID/BSSID WLAN_BSS_ENTRY lRssi into class10; signed dBm, not quality/SNR/estimated percent. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_WiFi_2_4G_AP_Ch_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Helper90c40 traverses WLAN_BSS_ENTRYs and records total2.4/5/6 counts at5c/84/ac. Class60 stores four1/6/11/other groups,88 four5GHz bands,b0 four6GHz U-NII bins. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately.",
+      "validation": "live_value_returned"
+    },
+    "RF_WiFi_2_4G_AP_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Helper90c40 traverses WLAN_BSS_ENTRYs and records total2.4/5/6 counts at5c/84/ac. Class60 stores four1/6/11/other groups,88 four5GHz bands,b0 four6GHz U-NII bins. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_WiFi_2_4G_AP_RSSI_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "typed capability or cached measurement with explicit availability",
+      "parity": "native_equivalent",
+      "evidence": "Bounded existing-owner supplicant BSS cache, pinned NetworkManager association generation and mac80211 PHY/station identity. Root collector publishes only parsed metadata to a fresh root-owned cache; unprivileged monitoring never authenticates or scans. Original nine RSSI buckets restored. Actual cached dBm only; lower-inclusive upper-exclusive bins count decade boundaries once. Known/unknown/outside/observation age and partial coverage retained; no quality-to-dBm estimate.",
+      "verification": "Standard rate/TLV/MCS/width/PPE, histogram boundaries/partial/dedup, boot-age/identity/owner/error and read-only collector tests; see VALIDATION.md for physical results.",
+      "units": "nine-bin dBm histogram; explicit threshold_dbm returns a scalar count"
+    },
+    "RF_WiFi_5G_AP_Band_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Helper90c40 traverses WLAN_BSS_ENTRYs and records total2.4/5/6 counts at5c/84/ac. Class60 stores four1/6/11/other groups,88 four5GHz bands,b0 four6GHz U-NII bins. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately.",
+      "validation": "live_value_returned"
+    },
+    "RF_WiFi_5G_AP_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Helper90c40 traverses WLAN_BSS_ENTRYs and records total2.4/5/6 counts at5c/84/ac. Class60 stores four1/6/11/other groups,88 four5GHz bands,b0 four6GHz U-NII bins. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_WiFi_5G_AP_RSSI_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "typed capability or cached measurement with explicit availability",
+      "parity": "native_equivalent",
+      "evidence": "Bounded existing-owner supplicant BSS cache, pinned NetworkManager association generation and mac80211 PHY/station identity. Root collector publishes only parsed metadata to a fresh root-owned cache; unprivileged monitoring never authenticates or scans. Original nine RSSI buckets restored. Actual cached dBm only; lower-inclusive upper-exclusive bins count decade boundaries once. Known/unknown/outside/observation age and partial coverage retained; no quality-to-dBm estimate.",
+      "verification": "Standard rate/TLV/MCS/width/PPE, histogram boundaries/partial/dedup, boot-age/identity/owner/error and read-only collector tests; see VALIDATION.md for physical results.",
+      "units": "nine-bin dBm histogram; explicit threshold_dbm returns a scalar count"
+    },
+    "RF_WiFi_6G_AP_NUII_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Helper90c40 traverses WLAN_BSS_ENTRYs and records total2.4/5/6 counts at5c/84/ac. Class60 stores four1/6/11/other groups,88 four5GHz bands,b0 four6GHz U-NII bins. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately.",
+      "validation": "live_value_returned"
+    },
+    "RF_WiFi_6G_AP_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Helper90c40 traverses WLAN_BSS_ENTRYs and records total2.4/5/6 counts at5c/84/ac. Class60 stores four1/6/11/other groups,88 four5GHz bands,b0 four6GHz U-NII bins. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "RF_WiFi_6G_AP_RSSI_Num": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "typed capability or cached measurement with explicit availability",
+      "parity": "native_equivalent",
+      "evidence": "Bounded existing-owner supplicant BSS cache, pinned NetworkManager association generation and mac80211 PHY/station identity. Root collector publishes only parsed metadata to a fresh root-owned cache; unprivileged monitoring never authenticates or scans. Original nine RSSI buckets restored. Actual cached dBm only; lower-inclusive upper-exclusive bins count decade boundaries once. Known/unknown/outside/observation age and partial coverage retained; no quality-to-dBm estimate.",
+      "verification": "Standard rate/TLV/MCS/width/PPE, histogram boundaries/partial/dedup, boot-age/identity/owner/error and read-only collector tests; see VALIDATION.md for physical results.",
+      "units": "nine-bin dBm histogram; explicit threshold_dbm returns a scalar count"
+    },
+    "RF_WiFi_Main_Aux_Rssi": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Class130/134 vendor readings with original fallback duplicating connected-BSS lRssi. Native publishes genuine nl80211 chain array/aggregate; physical Main/Aux mapping stays unverified, no duplicated fake antennas. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately. Physical Main/Aux mapping remains unverified."
+    },
+    "SaveEcLog": {
+      "status": "ported",
+      "backend": "native_controls / ec_diagnostics",
+      "validation": "explicit private file logger; no factory control or hidden background EEPROM collection",
+      "parity": "native_equivalent",
+      "evidence": "Original SaveEcLog fixed six table groups69 entries and23 nested descriptors recovered with firmware-version gates. Native private JSONL retains the ordinary snapshot plus complete raw EC tables, separate32-byte BB project FW revision, indexed board/VR/fan fields and existing bounded EEPROM/raw-event provider. Unknown codes retain raw units and typed errors; higher-version rows cause no I/O.",
+      "verification": "Fixed-recipe/source layout,201 complete request/155 partial transaction failure boundaries, selector restoration, string/status/timing/file tests; installed native/CLI/C and GJS qualification in VALIDATION.md."
+    },
+    "ShutdownWinIo": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Native Linux provider in lifecycle/configuration",
+      "verification": "live_value_returned"
+    },
+    "StopWinIoDriver": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_stop_initialize_and_independent_restore_verified",
+      "parity": "native_equivalent",
+      "evidence": "Native Linux provider in lifecycle/configuration",
+      "verification": "live_stop_initialize_and_independent_restore_verified"
+    },
+    "System_Check_S_Mode": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "not_applicable",
+      "evidence": "Original Windows wldp lockdown-mode query returns true for enum1/2. Native explicitly not applicable; no Linux SecureBoot/lockdown substitute.",
+      "verification": "Complete original helper/body review and native/CLI/C not-applicable readback."
+    },
+    "System_Read_LocalTime": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "format_and_current_local_time",
+      "parity": "native_equivalent",
+      "evidence": "Original local strftime YYYY-MM-DD HH:MM:SS; native local calendar format.",
+      "verification": "format_and_current_local_time"
+    },
+    "System_Read_TabletMode": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Advertised Linux SW_TABLET_MODE capability plus current-state ioctls only; exact evdev character-device identity. Positive survives other unreadable switches; off requires complete readable census. No input event stream. Current laptop-mode state checked; physical fold transition unperformed. Originalab230 uses vendor gate43880 then OEM8e payload33, returning a raw byte or INTMAX on transport error. Native advertised EV_SW/SW_TABLET_MODE is the Linux logical state; raw OEM byte mapping and physically folded state are separate qualifications.",
+      "verification": "Source-backed error/availability tests plus installed native/CLI/C checks in docs/VALIDATION.md"
+    },
+    "System_Read_VolumeLevel": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "source_property_GUID_and_public_SDK_method_order_verified; native_parser_partial_availability_and_pre_IO_validation_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original WmiMonitorBrightness.CurrentBrightness and default render endpoint scalar/mute contract; native per-backlight actual/max and default PipeWire software-volume setting with independent typed availability. Muted effective percentage zero; software amplification above100 is retained, not clamped.",
+      "verification": "source_property_GUID_and_public_SDK_method_order_verified; native_parser_partial_availability_and_pre_IO_validation_tests"
+    },
+    "Thermal_Read_ACFET_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_BatteryConnector_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_BoardTS0L_Temperature": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Thermal_Read_BoardTS0R_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_ChargerChoke_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_CpuDptf_PowerLimit1": {
+      "status": "linux_equivalent",
+      "units": "W",
+      "parity": "native_equivalent",
+      "evidence": "Original IOCTL80102074 slot1; native Linux RAPL package long_term configured watts, no EC dependency.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Thermal_Read_CpuDptf_PowerLimit2": {
+      "status": "linux_equivalent",
+      "units": "W",
+      "parity": "native_equivalent",
+      "evidence": "Original IOCTL80102078 slot2; native Linux RAPL package short_term configured watts, no EC dependency.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Thermal_Read_CpuPackagePower": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original Intel IOCTL8010207c reads package MSR611 energy with606 units and nominal100ms milliwatt scaling. Native CPU0 package energy/actual elapsed time is unprivileged and distinct from PSYS/input ADC; strict counter/wrap/freshness faults and PM baseline invalidation.",
+      "verification": "Units/wrap/partial/stale/fault and no-elevation tests; installed native/CLI/C/public hwmon versus independent read-only MSR611/606 endpoints; physical sleep/other-model qualification remains separate.",
+      "units": "structured measured watts with energy/time evidence"
+    },
+    "Thermal_Read_Cpu_Temperature": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Thermal_Read_Fan": {
+      "status": "native_driver",
+      "units": null,
+      "parity": "recovered_protocol",
+      "evidence": "Fixed source bank/register and quantity match qualified native provider; preserve typed errors and native JSON units.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "Thermal_Read_GpuTS1L_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_GpuTS1R_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_GpuVram_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_GpuVrm_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "Thermal_Read_UpCpu_Temperature": {
+      "status": "ported_native_availability",
+      "backend": "specialty_thermal",
+      "parity": "firmware_provider_required",
+      "evidence": "Original uncached EcFwRev vendor gate selects familyffff for qualified raw vendor2. Eight getters return unsupported zero; GPU TS1L falls back to HealthyTable DD02/03/00 when ASUS1000 absent. Fixed identity and source-backed mapping in specialty_thermal.py; no arbitrary label match or CC/CE/E4 probe.",
+      "verification": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions",
+      "validation": "original_export_branch_traces_with_positive_controls; native_telemetry_identity; typed_availability_regressions"
+    },
+    "TraceOutput": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "mocked_journal_transport_verified",
+      "parity": "native_equivalent",
+      "evidence": "Native Linux provider in lifecycle/configuration",
+      "verification": "mocked_journal_transport_verified"
+    },
+    "TraceOutputCritical": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "mocked_journal_transport_verified",
+      "parity": "native_equivalent",
+      "evidence": "Native Linux provider in lifecycle/configuration",
+      "verification": "mocked_journal_transport_verified"
+    },
+    "Update_AsusOsLanguage": {
+      "status": "ported",
+      "backend": "efi_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "recovered_protocol",
+      "evidence": "Native Linux provider in efi_oem",
+      "verification": "live_plan_verified; writes_simulated_only"
+    },
+    "WMICheckBatteryHealthSupport": {
+      "status": "linux_equivalent",
+      "units": "boolean",
+      "parity": "native_equivalent",
+      "evidence": "Native readable threshold support, not file-exists masking denial.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "WMICheckQuietFanSupport": {
+      "status": "linux_equivalent",
+      "units": "structured support/current state",
+      "parity": "native_equivalent",
+      "evidence": "Native profile availability/currentquiet state structured; originalDSTS110019 checks65536/65537, not choices string.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "WMIGet90Number": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "cached_type11_and_independent_DMI_table_match; framing_fault_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original OEMStringArray SafeArray index4; native exact fifth cached SMBIOS Type11 string with count/revision guards; no SKU fallback.",
+      "verification": "cached_type11_and_independent_DMI_table_match; framing_fault_tests"
+    },
+    "WMIGetBatteryHealth": {
+      "status": "linux_equivalent",
+      "units": "percent",
+      "parity": "native_equivalent",
+      "evidence": "Native actual readable charge threshold0..100, no Windows registry preference import.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "WMIGetBiosManufacture": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_Baseboard.Manufacturer; native board_vendor. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetBiosReleaseDate": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_Bios.ReleaseDate; native validated bios_date converted to ISO calendar date. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetBiosVersion": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_Bios.Name; native native firmware bios_version counterpart. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetBoardUUID": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "independent_dmidecode_system_uuid_match; sentinel_fault_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_ComputerSystemProduct.UUID; native validated system product UUID, not baseboard serial.",
+      "verification": "independent_dmidecode_system_uuid_match; sentinel_fault_tests"
+    },
+    "WMIGetCPUArchitecture": {
+      "status": "ported",
+      "backend": "linux_services / cpu_metadata",
+      "validation": "numeric_enum_cases; live_x64_9",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_Processor.Architecture numeric enum; explicit native kernel-architecture mapping.",
+      "verification": "numeric_enum_cases; live_x64_9"
+    },
+    "WMIGetCPUInfo": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_Processor.Name; native first processor model-name string. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetCPUUsg": {
+      "status": "ported",
+      "backend": "linux_services / cpu_metadata",
+      "validation": "percent_units_and_fault_tests; live_range",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_Processor.LoadPercentage units0..100; native aggregate busy percentage over100ms.",
+      "verification": "percent_units_and_fault_tests; live_range"
+    },
+    "WMIGetCardReaderCaption": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "exact_ID_positive_and_partial_fixtures; live_complete_absence",
+      "parity": "native_equivalent",
+      "evidence": "Original fixed USB VID0BDA/PID0129 selector; native cached matching USB product captions with partial/absence metadata.",
+      "verification": "exact_ID_positive_and_partial_fixtures; live_complete_absence"
+    },
+    "WMIGetComputerFamilyName": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_ComputerSystem.SystemFamily; native product_family. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetExternMonitorNum": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "native_DRM_metadata_availability_verified",
+      "parity": "native_equivalent",
+      "evidence": "Cached DRM status with per-connector availability, identity/inventory/state rechecks; exact external count requires complete readable external states. Optional modes/base-EDID failures preserve known connection. Base header/checksum/version/manufacturer and model ASCII validated; base fields remain usable independently of unparsed extensions. No modeset, DDC/controller request or EDID serial output.",
+      "verification": "Display metadata regression tests plus installed native/CLI/C and direct-sysfs qualification in docs/VALIDATION.md"
+    },
+    "WMIGetExternMonitorPropList": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "native_DRM_metadata_availability_verified",
+      "parity": "native_equivalent",
+      "evidence": "Cached DRM status with per-connector availability, identity/inventory/state rechecks; exact external count requires complete readable external states. Optional modes/base-EDID failures preserve known connection. Base header/checksum/version/manufacturer and model ASCII validated; base fields remain usable independently of unparsed extensions. No modeset, DDC/controller request or EDID serial output.",
+      "verification": "Display metadata regression tests plus installed native/CLI/C and direct-sysfs qualification in docs/VALIDATION.md"
+    },
+    "WMIGetGPUInfo": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_VideoController.Caption; native cached PCI display identities with locally resolved, numeric-ID-matched captions. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetGPUUsg": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "all_advertised_providers_collected; per_provider_labels_and_errors; identity_and_census_rechecks; live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original c8160/c01c0 selects the maximum WMI GPUEngine 3D utilization; native reports declared Linux provider counterparts, not that per-process 3D scalar. Version0.71 collects every advertised DRM busy counter and i915 PMU; each row carries provider, independent provider_errors remain, and decode/parse failures become per-provider EPROTO rows. Device identities (PMU including resolved path) and the provider census are rechecked before publication; a changed identity fails only rows that were available, while failed rows keep their errno. provider_coverage_complete means every advertised provider was enumerated and read with no provider error or provider-level failure row; all_readings_available separately reports whether every published row is available. Joined source names the providers present. Providers are not substituted, summed or cross-calibrated. Per-engine full-running interval/monotonic/boottime/identity gates; reset/multiplexed/short/delayed/invalid samples remain null, no extrapolation/clamping. Not a census of every physical GPU. Actual Intel i915 qualified; mixed DRM/i915/other provider variants simulated only.",
+      "verification": "Scoped 0.71 source review; provider coexistence/failure/decode/discovery/identity/census unit tests plus prior error/availability tests; installed native/CLI/C and direct-sysfs qualification recorded in docs/VALIDATION.md",
+      "units": "DRM rows: device busy percent 0..100; i915_pmu rows: per-engine busy nanoseconds over measured running intervals; providers not summed"
+    },
+    "WMIGetHDDCaption": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "source_selection_and_native_dispatch_contract",
+      "parity": "native_equivalent",
+      "evidence": "Recovered original Win32_DiskDrive fixed hard disk media (includes SSDs); native cached sysfs provider with typed selection and field availability",
+      "verification": "original_query_and_property_literals; distinct_selection_and_error_regressions; installed_native_CLI_C_and_full_read_audit"
+    },
+    "WMIGetHDDInfo": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "source_selection_and_native_dispatch_contract",
+      "parity": "native_equivalent",
+      "evidence": "Recovered original MSFT_PhysicalDisk MediaType3 (rotating HDDs); native cached sysfs provider with typed selection and field availability",
+      "verification": "original_query_and_property_literals; distinct_selection_and_error_regressions; installed_native_CLI_C_and_full_read_audit"
+    },
+    "WMIGetHDDList": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetHDDModel": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetHDDSize": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetHDDTemp": {
+      "status": "ported",
+      "backend": "linux_services / disk_temperature",
+      "validation": "live_mixed_device_values_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original83430/827d0 query MSStorageDriver_FailurePredictData and select SMART attributeC2 raw byte. Native per-disk hwmon/SMART Celsius is explicit. Physical block census/sysfs identity/diskseq/dev_t and device-node identity bracket metadata, the reading and final publication. hwmon ancestry/name/inode/association are rechecked; replacements do not publish a temperature for an old disk. Read-only SMART retains standby,3,5 and no permissive retry; controller/bridge wake limits remain explicit.",
+      "verification": "14 filesystem/transport/root-route tests including generation and same-dev_t node reuse, hwmon reassociation, census changes, independent failure, standby, malformed values and deadlines; installed NVMe qualification in VALIDATION.md."
+    },
+    "WMIGetHDDUsage": {
+      "status": "ported",
+      "backend": "linux_services / filesystem_usage",
+      "validation": "pinned_mount_and_disk_generation_tests; per_filesystem_error_and_reserved_space_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original MSFT PhysicalDisk MediaType3/4 -> Disk Number -> Partition Guid -> Volume Size/SizeRemaining. Native rotating selection gives per-filesystem capacity, not I/O utilization. Pinned directory fdinfo mount ID/inode/dev_t, mountinfo/lsblk association and selected block identity/diskseq/classification/tree bracket fstatvfs and publication; no stale-parent fallback. Unknown synthetic/multidevice mappings remain unavailable.",
+      "verification": "Complete1578-instruction SSD/HDD flow comparison and all RIP targets/literals; mount replacement, overmount, disk generation, independent errors, reserved space/zero, bounds and timeout fixtures; installed actual filesystem qualification in VALIDATION.md."
+    },
+    "WMIGetLCDModel": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "original_unfiltered_friendly_name_query; internal_only_strict_boolean_selector; native_DRM_metadata_availability_verified",
+      "parity": "native_equivalent",
+      "evidence": "Original cb3e0 queries every WMIMonitorID UserFriendlyName without an internal-panel filter. Version0.71 default returns connected/unknown internal and external DRM rows; explicit internal_only=true preserves the former panel-only view. Only this display query accepts the selector, validated before metadata reads. Cached DRM status with per-connector availability, identity/inventory/state rechecks. Optional modes/base-EDID failures preserve known connection. Base header/checksum/version/manufacturer and model ASCII validated; unknown model is never guessed. No modeset, DDC/controller request or EDID serial output.",
+      "verification": "Scoped 0.71 source review; display metadata regression tests including external-row default and strict selector type checks; installed native/CLI/C and direct-sysfs qualification recorded in docs/VALIDATION.md",
+      "units": "default connected/unknown internal and external monitor rows; optional boolean internal_only=true returns the strict internal-panel view"
+    },
+    "WMIGetMacAddress": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "device_relation_and_address_fault_tests; live_hardware_census; no_permanent_address_claim",
+      "parity": "native_equivalent",
+      "evidence": "Original physicalAdapter=true current MAC addresses; native device-backed interface census excludes software-only links with identity guards.",
+      "verification": "device_relation_and_address_fault_tests; live_hardware_census; no_permanent_address_claim"
+    },
+    "WMIGetMemFrequency": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_PhysicalMemory query properties mapped to validated SMBIOS Type 17 records in hardware_memory.py; firmware declarations, not OS-usable memory. No maximum-rate fallback for configured speed.",
+      "verification": "validated_Type17_parser; live_selected_fields_match_dmidecode",
+      "validation": "validated_Type17_parser; live_selected_fields_match_dmidecode"
+    },
+    "WMIGetMemInfo": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_PhysicalMemory query properties mapped to validated SMBIOS Type 17 records in hardware_memory.py; firmware declarations, not OS-usable memory. No maximum-rate fallback for configured speed.",
+      "verification": "validated_Type17_parser; live_selected_fields_match_dmidecode",
+      "validation": "validated_Type17_parser; live_selected_fields_match_dmidecode"
+    },
+    "WMIGetMemManufacture": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_PhysicalMemory query properties mapped to validated SMBIOS Type 17 records in hardware_memory.py; firmware declarations, not OS-usable memory. No maximum-rate fallback for configured speed.",
+      "verification": "validated_Type17_parser; live_selected_fields_match_dmidecode",
+      "validation": "validated_Type17_parser; live_selected_fields_match_dmidecode"
+    },
+    "WMIGetMemModel": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_PhysicalMemory query properties mapped to validated SMBIOS Type 17 records in hardware_memory.py; firmware declarations, not OS-usable memory. No maximum-rate fallback for configured speed.",
+      "verification": "validated_Type17_parser; live_selected_fields_match_dmidecode",
+      "validation": "validated_Type17_parser; live_selected_fields_match_dmidecode"
+    },
+    "WMIGetMemSize": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_PhysicalMemory query properties mapped to validated SMBIOS Type 17 records in hardware_memory.py; firmware declarations, not OS-usable memory. No maximum-rate fallback for configured speed.",
+      "verification": "validated_Type17_parser; live_selected_fields_match_dmidecode",
+      "validation": "validated_Type17_parser; live_selected_fields_match_dmidecode"
+    },
+    "WMIGetModelName": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_Baseboard.Product; native board_name. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetMonitorBrightness": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Per-backlight actual/max values validated, range and device identity rechecked; failures preserve other devices and omit percent instead of substituting0/1. Kernel levels, not optical calibration.",
+      "verification": "Mixed valid/zero/missing/invalid/range-change tests; installed native/CLI/C and independent backlight read"
+    },
+    "WMIGetOSInfo": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_OperatingSystem.Caption/OSArchitecture and RtlGetVersion; native declared native distribution caption, kernel version and kernel ISA width. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetPhysicalDiskInfo": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetProductName": {
+      "status": "ported",
+      "units": null,
+      "parity": "native_equivalent",
+      "evidence": "Win32_ComputerSystem.Model; native product_name. No unrelated sensor snapshot or firmware command.",
+      "verification": "native_DMI_CPU_OS_PCI_sources; see_docs_VALIDATION_for_installed_interface_scope",
+      "validation": "source_properties; strict_provider_tests; live_native_fields",
+      "backend": "linux_services / identity_inventory"
+    },
+    "WMIGetQuietFan": {
+      "status": "linux_equivalent",
+      "units": "string",
+      "parity": "native_equivalent",
+      "evidence": "Native current canonical profile; validate against actual choices, no Windows cached preference import.",
+      "verification": "Source-reviewed dedicated provider; decoder/transport tests; hardware outcomes documented separately in docs/VALIDATION.md.",
+      "validation": "Source and fixture checks; current hardware outcome separate.",
+      "backend": "field_reads"
+    },
+    "WMIGetSDCardCaption": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetSDCardSize": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Original removable SD-caption matching returns last size; native keeps total512-byte-sector capacity and optional detailed per-card records, with exact MMC types, identity/coherency and typed unavailable.",
+      "verification": "Complete original source/helper review; per-card/scalar/selection/error fixtures; current no-card readback separate from unperformed inserted-card physical positive.",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetSN": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "independent_dmidecode_system_serial_match; placeholder_errors",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_Bios.SerialNumber; native firmware system/product serial counterpart, Windows live equality unproven.",
+      "verification": "independent_dmidecode_system_serial_match; placeholder_errors"
+    },
+    "WMIGetSSDList": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetSSDModel": {
+      "status": "ported",
+      "backend": "linux_services",
+      "parity": "native_equivalent",
+      "evidence": "Recovered per-export fixed/rotating/non-rotating/removable and SD-caption selection; cached validated sysfs provider in storage_inventory.py. Linux kernel classifications, not independent physical media measurements. Explicit MMC SD/SDcombo type augments SD size; no eMMC/name-only classification.",
+      "verification": "selection_and_availability_regressions; live_sysfs_lsblk_agreement",
+      "validation": "selection_and_availability_regressions; live_sysfs_lsblk_agreement"
+    },
+    "WMIGetSSDUsage": {
+      "status": "ported",
+      "backend": "linux_services / filesystem_usage",
+      "validation": "pinned_mount_and_disk_generation_tests; per_filesystem_error_and_reserved_space_tests",
+      "parity": "native_equivalent",
+      "evidence": "Original MSFT PhysicalDisk MediaType3/4 -> Disk Number -> Partition Guid -> Volume Size/SizeRemaining. Native nonrotating fixed selection gives per-filesystem capacity, not I/O utilization. Pinned directory fdinfo mount ID/inode/dev_t, mountinfo/lsblk association and selected block identity/diskseq/classification/tree bracket fstatvfs and publication; no stale-parent fallback. Unknown synthetic/multidevice mappings remain unavailable.",
+      "verification": "Complete1578-instruction SSD/HDD flow comparison and all RIP targets/literals; mount replacement, overmount, disk generation, independent errors, reserved space/zero, bounds and timeout fixtures; installed actual filesystem qualification in VALIDATION.md."
+    },
+    "WMIGetSystemChassisTypes": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "recovered_full_switch_table; classification_tests; live31_Notebook",
+      "parity": "native_equivalent",
+      "evidence": "Original classification map Desktop3/13/35, Notebook10/30/31/32, unknown otherwise; native preserves raw code and classification.",
+      "verification": "recovered_full_switch_table; classification_tests; live31_Notebook"
+    },
+    "WMIGetType2SN": {
+      "status": "ported",
+      "backend": "linux_services / platform_metadata",
+      "validation": "independent_dmidecode_baseboard_serial_match; placeholder_errors",
+      "parity": "native_equivalent",
+      "evidence": "Original Win32_Baseboard.SerialNumber; native firmware baseboard serial.",
+      "verification": "independent_dmidecode_baseboard_serial_match; placeholder_errors"
+    },
+    "WMIGetWiFiBytesPersec": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "ROOT CIMV2 query Win32_PerfFormattedData_Tcpip_Networkinterface selects BytesReceivedPersec and BytesSentPersec. Native detailed JSON retains both rates; default map separately aggregates RX+TX. Native source/quantity and availability qualification is separate from physical RF coverage.",
+      "verification": "Complete source/shared-helper review; quantity/unit/identity/deadline/fault tests; installed native/CLI/C and independent reads recorded separately."
+    },
+    "WMIGetWiFiCardName": {
+      "status": "ported",
+      "backend": "linux_services",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original human WLAN/physical ifType71 adapter descriptions use identity-matched local PCI captions or device USB descriptors. Driver remains separate. PCI address/class/vendor/device and sysfs identity rechecked; absent descriptive names stay unavailable independently of link state.",
+      "verification": "Synthetic identity/name/error/USB tests and installed native/CLI/C physical caption qualification; no database download, network activation or configuration.",
+      "units": "structured human Wi-Fi card inventory with separate driver"
+    },
+    "WMISetAppPath": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_plan_verified; private_test_configuration_write_verified",
+      "parity": "native_equivalent",
+      "evidence": "Native application registration follows actual caller/sudo identity and custom configuration context. File access runs after privilege drop; private bounded revision-checked atomic record preserves unrelated keys and separate preference/auth files.",
+      "verification": "Actual-worker ownership/schema/stale/lock/privilege fixtures and native/CLI/C private configuration plan/apply/readback; no app execution."
+    },
+    "WMISetBatteryHealth": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_same_value_write_and_readback",
+      "parity": "native_equivalent",
+      "evidence": "Original immediate DEVS1179735 Control_status value is separate from ToUser persistence. Native meaningful percentage0..100 uses ASUS RSOC sysfs with firmware acknowledgment and cached-setting readback, not independent charge-cutoff measurement.",
+      "verification": "source + full0..100 simulated range and typed errors; installed same-value100 only"
+    },
+    "WMISetBatteryHealthToUser": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_same_value_write_and_private_user_record_readback",
+      "parity": "native_equivalent",
+      "evidence": "Native meaningful percentage0..100 and caller-owned successful choice record; preserve immediate-only distinction. ASUS threshold readback is the cached acknowledged setting, not measured charge cutoff.",
+      "verification": "source + full0..100 simulated range; retained private caller persistence and installed same-value100"
+    },
+    "WMISetQuietFan": {
+      "status": "ported",
+      "backend": "native_controls",
+      "validation": "live_same_value_write_and_private_user_record_readback",
+      "parity": "native_equivalent",
+      "evidence": "Original successful user-choice side effect has a private native record. Actual caller privilege drop, bounded schema, revision-checked atomic replacement and hardware readback; no new boot charge policy or competing profile authority.",
+      "verification": "Ownership/parser/concurrency/commit/failure fixtures; installed native/CLI/C same-value and independent private user-file readback."
+    },
+    "WOA_EC_read": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Original ATD commandcode/param transport is separate from explicit native x86 HealthyTable bank/register namespace. Exact read/write schema; actual bank/packet and fan/cache guards, without a guessed bank6 zero-byte support predicate.",
+      "verification": "Full shared helper source review and native byte/plan tests. Raw writes require reviewed digest-bound recipe3; no physical raw write or other-model qualification."
+    },
+    "WOA_EC_write": {
+      "status": "ported",
+      "backend": "native_oem",
+      "validation": "live_plan_verified; writes_simulated_only",
+      "parity": "native_equivalent",
+      "evidence": "Original ATD commandcode/param transport is separate from explicit native x86 HealthyTable bank/register namespace. Exact read/write schema; actual bank/packet and fan/cache guards, without a guessed bank6 zero-byte support predicate.",
+      "verification": "Full shared helper source review and native byte/plan tests. Raw writes require reviewed digest-bound recipe3; no physical raw write or other-model qualification."
+    },
+    "wmiadd": {
+      "status": "ported",
+      "backend": "lifecycle/configuration",
+      "validation": "live_value_returned",
+      "parity": "native_equivalent",
+      "evidence": "Native Linux provider in lifecycle/configuration",
+      "verification": "live_value_returned"
+    }
+  },
+  "limitations": [
+    "The EC transport is qualified only on UP3404VA.301 with HealthyTable 15; no support claim for other ASUS or ARM systems.",
+    "Linux values use structured JSON and the native C ABI; Windows/Wine binary compatibility is outside scope.",
+    "Some sensors/peripherals have no provider on this model. Unavailable results are distinct from implementation errors.",
+    "OEM writes are implemented and simulation-tested; actual factory mutations were not performed.",
+    "The GNOME bridge requires a new session to be discovered; AT-SPI provides current-session fallback.",
+    "Fan requests accept0..255, subject to low-RPM/fault automatic restoration; actual duty/RPM calibration is separate. There is no general manual timer lease.",
+    "Physical main/aux antenna labels, temperature-region thresholds and unqualified OEM lifetime bytes are not inferred. Recorded U16 firmware runtime has a separate target-qualified2h scale; the legacy4-byte prefix remains opaque.",
+    "Enabled-Secure-Boot loading, cold boot and physical suspend/resume remain unverified."
+  ],
+  "native_monitoring": {
+    "charger_adc": {
+      "provider": "ISL9241 via OEM firmware combined reads",
+      "parity": "native_equivalent",
+      "verification": "live_value_returned; installed source/signature/permissions verified; physical unplug/port B/return A passed; transient failures unavailable",
+      "evidence": "Firmware transaction-drain path, 0x49/0x0e IDs, ADC enable, 10 milliohm firmware scaling; fixed read-only register set and verified volatile IPC restoration",
+      "attributes": [
+        "charger_adc",
+        "in7_input",
+        "curr3_input",
+        "power2_input"
+      ],
+      "external_meter_calibration": false
+    },
+    "charger_controller_metrics": {
+      "provider": "ISL9241 non-clearing register set via OEM combined worker",
+      "parity": "native_equivalent",
+      "verification": "installed public hwmon/JSON; physical battery discharge 3.108-6.0384 A; disabled ADC unavailable; 180 injected failures and restoration checks passed",
+      "evidence": "0x82 temperature equation; 0x81/0x84/0x85/0x86 ADC; 0x3a protection and 0x91 live flags; 0x90 read-to-clear excluded",
+      "attributes": [
+        "charger_metrics",
+        "temp9_input",
+        "in8_input",
+        "in9_input",
+        "curr4_input",
+        "curr5_input"
+      ],
+      "nonzero_charge_current_tested": false,
+      "external_meter_calibration": false
+    },
+    "cpu_throttling": {
+      "provider": "Linux thermal_throttle sysfs",
+      "parity": "native_equivalent",
+      "verification": "live per-CPU counters returned",
+      "evidence": "Kernel event/count/total/max counters; package copies are not summed; report carries every CPU and explicit per-CPU maxima"
+    },
+    "ssd_health": {
+      "provider": "NVMe SMART via sanitized root-owned cache",
+      "parity": "native_equivalent",
+      "verification": "installed minute timer and root-owned cache verified; live SMART and read-only device sandbox passed",
+      "evidence": "Wear/spare/critical status, errors, unsafe shutdowns, power-on and traffic counters; decimal strings preserve large counters; 180s freshness bound"
+    },
+    "pd_source_capabilities": {
+      "provider": "Fixed per-port EC RX_SOURCE_CAPS cache via ACPI RDER",
+      "parity": "native_equivalent",
+      "verification": "installed both-port four-PDO profiles; stable unplug suppression and return A passed; 122 injected read failures",
+      "evidence": "Firmware port/register-0x30/length-29 cache descriptors; complete raw PDOs, contract-bracketed double pass and active-PDO membership; no PD controller writes",
+      "attributes": [
+        "pd_source_caps"
+      ],
+      "cable_identity_inferred": false
+    },
+    "board_thermistors": {
+      "provider": "HealthyTable one-based thermistor selectors with ACPI SEN1-SEN5 labels",
+      "parity": "native_equivalent",
+      "verification": "installed labels and all five values matched independent fixed EC reads exactly; original selector 4 restored; read-failure restoration tested",
+      "evidence": "Index1 SSD/0322, 2 Ambient/0329, 3 CPU/0324, 4 Charger/0325, 5 DDR/0326; retain prior valid selector and restore on failure"
+    },
+    "battery_gauge_diagnostics": {
+      "provider": "Fixed DE manufacturer-data broker",
+      "parity": "native_equivalent",
+      "verification": "Installed0.17 complete lifetime payloads and FET/history tails;886 block-worker failure boundaries plus retained gauge/prefix tests; old-kernel partial data supported",
+      "evidence": "Fixed opcode10/subindex11/channelB/wire16/command23. DE fixed read selectors and exact identity/firmware only; complete32/8/26/32/32 bytes, two sentinel passes, prefix equality,48-byte restoration/fault latch. Block2/3 extra bytes differ from TI reference and stay raw.0.27 decodes first16-byte U16 runtime/firmware-region duration prefix in2h steps, and two applicable balancing counters from block2. Legacy4-byte prefix stays opaque; exact Celsius thresholds, reset behavior and extra OEM bytes remain unqualified.",
+      "attributes": [
+        "battery_gauge_metrics",
+        "battery_lifetime",
+        "temp10_input",
+        "temp11_input",
+        "temp12_input",
+        "temp13_input",
+        "temp14_input",
+        "temp15_input",
+        "temp16_input"
+      ]
+    },
+    "pd_received_identity": {
+      "provider": "TPS65994BF fixed received identity/alert registers via OEM combined worker",
+      "parity": "native_equivalent",
+      "verification": "Installed 0.15 identity/alert reader and manual-ownership EBUSY verified. Direct reads on both endpoints restored IPC fields;320 injected failures plus malformed-alert/restoration tests passed. Cable identities empty; received alert0.",
+      "evidence": "Channel A, wire addresses40/48, fixed read-only03/48/49/74 pointers; one-byte output; snapshot-bracketed active-port gate; 34-byte IPC restoration and fault latch. Missing identities and absent alert readers are unavailable, not fabricated zero.",
+      "attributes": [
+        "pd_identity"
+      ]
+    },
+    "disk_temperatures": {
+      "provider": "Identity-bracketed Linux hwmon with bounded standby-aware SMART fallback",
+      "parity": "native_equivalent",
+      "verification": "14 disk/node/generation/hwmon/census/SMART/error/deadline tests; current NVMe installed native/CLI/C qualification",
+      "evidence": "Original83430/827d0 query MSStorageDriver_FailurePredictData and select SMART attributeC2 raw byte. Native per-disk hwmon/SMART Celsius is explicit. Physical block census/sysfs identity/diskseq/dev_t and device-node identity bracket metadata, the reading and final publication. hwmon ancestry/name/inode/association are rechecked; replacements do not publish a temperature for an old disk. Read-only SMART retains standby,3,5 and no permissive retry; controller/bridge wake limits remain explicit."
+    },
+    "battery_gauge_extra": {
+      "provider": "Fixed OEM battery SMBus block reader for DAStatus1/2",
+      "parity": "native_equivalent",
+      "verification": "TI R4/R5 format references plus eight captured nonzero discharge frames replayed against raw fields; Python/Node error/scale/independence and reviewed one-helper upgrade tests; installed same-frame qualification in VALIDATION.md.",
+      "evidence": "Qualified DA1/DA2 frames, fixed read-only broker and exact identity/freshness/topology. Pack power is its own signed centiwatt Voltage()*Current() field; each cell power uses its own V/I sample pair. No undocumented five-percent sum gate, replacement estimate or common timestamp claim. Per-field200W limit and cell V/I checks remain; sum difference is diagnostic only.",
+      "attributes": [
+        "battery_gauge_extra",
+        "temp17_input"
+      ],
+      "power_computed_by_gauge": true,
+      "independent_power_adc": false
+    },
+    "battery_identity": {
+      "provider": "Fixed firmware battery-only SBS block READ0x20/21",
+      "attributes": [
+        "battery_identity"
+      ],
+      "maximum_cache_seconds": 300,
+      "parity": "native_equivalent",
+      "evidence": "Complete variable-length strings, raw bytes and original ASUS raw gauge byte; source is battery, not ACPI laptop identity. Exact target firmware, idle/manual guards and48-byte restoration.",
+      "verification": "Private target probe and455 communication failures; native/C exact agreement and no empty strings"
+    },
+    "battery_sbs": {
+      "provider": "Fixed firmware native SMBus ReadWord; opcode16/subindex9/channelB/wire16",
+      "attributes": [
+        "battery_sbs",
+        "battery_sbs_diagnostics"
+      ],
+      "maximum_cache_seconds": 30,
+      "parity": "native_equivalent",
+      "evidence": "Fixed16-command READ allowlist, exact gauge/firmware and mode/specification brackets. Two-byte RX sentinels and complete30-byte suffix checked after every word; suffix seeded once and never rewritten between words. All49 volatile bytes restored/read back with shared fault latch. Native control0/worker-result1 is distinct from legacy I2C80/40; no fallback to combined transfer or legacy software observer. One full fresh retry only for completed native worker-result0 after verified restoration. Measurement/request/estimated gauge values remain separate.",
+      "verification": "Private34-read native probe with32 complete tail proofs and independent Linux capacity/cycle checks;944 ordinary/985 sentinel-retry native fault points plus753 legacy faults in optimized/sanitized builds; installed native/CLI/C/Vitals and repeated concurrent checks in docs/VALIDATION.md. Meaningful nonzero charging/discharging current remains pending.",
+      "physical_ic_vendor_identified": false
+    },
+    "ucsi_power_metadata": {
+      "provider": "Linux UCSI power_supply read-only attributes",
+      "parity": "native_equivalent",
+      "measurement": false,
+      "evidence": "Kernel driver derives voltage/current from PDO/RDO or Type-C advertisements. Current_now is not measured draw. Optional values use explicit metadata names; legacy measurement slots are null. Separate ISL9241 shared-input ADC remains the measured source. Per-device errors and state/identity/inventory brackets prevent false off/zero states.",
+      "verification": "Targeted filesystem/state tests; installed source-facing phone and PD sink compared with independent power_supply/Type-C state"
+    },
+    "wireless_links": {
+      "provider": "Read-only Linux nl80211 link metadata through fixed iw queries",
+      "parity": "native_equivalent",
+      "evidence": "Connection, explicit dBm RSSI, reported TX/RX rates, channel and driver-reported MCS mode; unavailable fields stay unknown. Source boundaries, association/identity checks, no SSID collection in output, no active scan or device settings. Current rates are not throughput or maximum card capability; physical main/aux mapping unverified.",
+      "verification": "18 focused parser/cache/route tests; installed source comparisons described in docs/VALIDATION.md"
+    },
+    "recorded_firmware_runtime": {
+      "provider": "Existing complete lifetime block3, offset0 U16; no new BMS request",
+      "parity": "native_equivalent",
+      "resolution_hours": 2,
+      "evidence": "Published compatible U16/2h field layout plus target two-edge cadence7200..7440s; exact identity/firmware/full-frame guards and first8-word rounding relationship. Seven region durations are reported separately without Celsius thresholds; remaining OEM bytes stay raw. No interpolation, wall uptime, battery age or reset/wrap claim.",
+      "verification": "Raw capture/native/CLI/C and fresh Vitals checks documented in docs/VALIDATION.md; simulated partial/max/mismatch and quantized0/2h cases",
+      "physical_gauge_vendor_identified": false
+    },
+    "recorded_temperature_region_time": {
+      "provider": "Existing complete lifetime block3 offsets2..15, seven U16 counters",
+      "parity": "native_equivalent",
+      "resolution_hours": 2,
+      "configured_celsius_thresholds_available": false,
+      "evidence": "Matched compatible time-prefix layout plus capture coherence/runtime and region-cadence evidence. Firmware region codes UT/LT/STL/RT/STH/HT/OT preserve unknown actual thresholds; independent quantization explains sum gaps. Not new physical thermistors or current region state.",
+      "verification": "Targeted complete/partial/zero/step/max/mismatch tests; installed raw/native/CLI/C/Vitals agreement in docs/VALIDATION.md"
+    },
+    "recorded_cell_balancing_time": {
+      "provider": "Complete lifetime block2 offsets4/5, two applicable U8 counters",
+      "parity": "recovered_protocol",
+      "resolution_hours_from_compatible_reference": 2,
+      "physical_nonzero_accumulation_qualified": false,
+      "evidence": "Exact8-byte compatible4-reset/4-balancing layout; qualified two-cell topology and zero inactive storage. Only applicable cells reported. Zero is a quantized recorded counter, not current balancing status. Max/partial/incompatible layout remains unavailable with raw data retained.",
+      "verification": "Current raw counters255/255 remain unavailable as converted time; synthetic zero/nonzero/max/partial/inactive cases and installed native/CLI/Vitals agreement; no balancing trigger/reset/configuration write",
+      "current_valid_hardware_value_available": false
+    }
+  }
+}

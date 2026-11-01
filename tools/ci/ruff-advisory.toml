@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Advisory ruff profile used only by CI (continue-on-error).
+# Promote F401, B904, B905, S101 and S607 to tools/ci/ruff.toml after the
+# backlog is fixed; see docs/STATIC_ANALYSIS.md ("Python").
+target-version = "py312"
+
+[lint]
+select = ["E9", "F", "B", "S"]
+# S603/S404: fixed argv lists, no shell=True; B023: closures run synchronously.
+ignore = ["S603", "S404", "B023"]

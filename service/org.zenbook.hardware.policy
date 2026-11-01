@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Managed by asus-healthytable-linux -->
+<!-- SPDX-License-Identifier: GPL-2.0-only -->
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>asus-healthytable-linux</vendor>
+  <action id="org.zenbook.hardware.read">
+    <description>Read Zenbook hardware status</description>
+    <message>Authentication is required to read Zenbook hardware status</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+  </action>
+  <action id="org.zenbook.hardware.read-identifiers">
+    <description>Read Zenbook hardware identifiers</description>
+    <message>Authentication is required to read serial numbers, UUIDs and MAC addresses</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+  <action id="org.zenbook.hardware.settings">
+    <description>Change Zenbook power settings</description>
+    <message>Authentication is required to change the performance profile, charge limit or keyboard backlight</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+  <action id="org.zenbook.hardware.fan-lease">
+    <description>Control the Zenbook fan manually</description>
+    <message>Authentication is required for a time-limited manual fan lease</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+  <action id="org.zenbook.hardware.ec-oem">
+    <description>Perform Zenbook EC/OEM operations</description>
+    <message>Authentication is required for embedded-controller and OEM operations</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+  </action>
+  <action id="org.zenbook.hardware.firmware">
+    <description>Change Zenbook firmware or factory data</description>
+    <message>Authentication is required to change firmware or factory fields</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+  </action>
+  <action id="org.zenbook.hardware.driver">
+    <description>Load or unload the Zenbook hardware driver</description>
+    <message>Authentication is required to load or unload the hardware driver</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+  </action>
+</policyconfig>

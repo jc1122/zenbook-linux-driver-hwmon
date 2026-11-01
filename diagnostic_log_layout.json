@@ -1,0 +1,886 @@
+{
+  "schema": 1,
+  "protocol": 15,
+  "main": [
+    {
+      "name": "EC_Info_CMD",
+      "rows": [
+        {
+          "index": 1,
+          "name": "HealthyTableVersion",
+          "command": 187,
+          "bank_or_special": 80,
+          "register_or_count": 80,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 2,
+          "name": "ChipID",
+          "command": 187,
+          "bank_or_special": 16,
+          "register_or_count": 16,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 3,
+          "name": "LengthOfChipName",
+          "command": 187,
+          "bank_or_special": 17,
+          "register_or_count": 17,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 4,
+          "name": "ProjectInformation",
+          "command": 187,
+          "bank_or_special": 81,
+          "register_or_count": 81,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 5,
+          "name": "PlatformInformation",
+          "command": 187,
+          "bank_or_special": 82,
+          "register_or_count": 82,
+          "length": 1,
+          "minimum_version": 15
+        },
+        {
+          "index": 6,
+          "name": "RawDataVersion",
+          "command": 187,
+          "bank_or_special": 83,
+          "register_or_count": 83,
+          "length": 1,
+          "minimum_version": 17
+        },
+        {
+          "index": 7,
+          "name": "ChipName",
+          "command": 255,
+          "bank_or_special": 0,
+          "register_or_count": 18,
+          "length": 0,
+          "minimum_version": 1
+        },
+        {
+          "index": 8,
+          "name": "ProjectFWRevision",
+          "command": 255,
+          "bank_or_special": 1,
+          "register_or_count": 32,
+          "length": 0,
+          "minimum_version": 1
+        }
+      ]
+    },
+    {
+      "name": "Bat_Power_CMD",
+      "rows": [
+        {
+          "index": 1,
+          "name": "PowerSource",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 0,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 2,
+          "name": "ECBatteryStatus",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 1,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 3,
+          "name": "ChargerStatus",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 2,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 4,
+          "name": "BatteryChargeErrorStatus",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 3,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 5,
+          "name": "RSOC",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 48,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 6,
+          "name": "BatteryTemperature",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 52,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 7,
+          "name": "Voltage",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 54,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 8,
+          "name": "Current",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 56,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 9,
+          "name": "AverageCurrent",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 58,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 10,
+          "name": "ChargeCurrent",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 60,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 11,
+          "name": "ChargeVoltage",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 62,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 12,
+          "name": "RemainingCapacity",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 64,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 13,
+          "name": "FullChargeCapacity",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 66,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 14,
+          "name": "CellVoltage1",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 72,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 15,
+          "name": "CellVoltage2",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 74,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 16,
+          "name": "CellVoltage3",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 76,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 17,
+          "name": "CellVoltage4",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 78,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 18,
+          "name": "BatteryStatus",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 80,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 19,
+          "name": "BatteryMode",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 82,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 20,
+          "name": "ManufactureDate",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 84,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 21,
+          "name": "RSOCofHealthCharge",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 86,
+          "length": 2,
+          "minimum_version": 8
+        },
+        {
+          "index": 22,
+          "name": "ASUSBatteryStatus",
+          "command": 221,
+          "bank_or_special": 1,
+          "register_or_count": 88,
+          "length": 2,
+          "minimum_version": 22
+        },
+        {
+          "index": 23,
+          "name": "Manuf_name",
+          "command": 255,
+          "bank_or_special": 2,
+          "register_or_count": 16,
+          "length": 0,
+          "minimum_version": 1
+        }
+      ]
+    },
+    {
+      "name": "Thermal_CMD",
+      "rows": [
+        {
+          "index": 1,
+          "name": "CPUTemperature1",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 0,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 2,
+          "name": "CPUTemperature2",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 1,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 3,
+          "name": "PCHTemperature",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 2,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 4,
+          "name": "GPUTemperature1",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 3,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 5,
+          "name": "GPUTemperature2",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 4,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 6,
+          "name": "STTTemperature",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 5,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 7,
+          "name": "ThermalSensorSupportedStatus",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 6,
+          "length": 1,
+          "minimum_version": 22
+        },
+        {
+          "index": 8,
+          "name": "ThermalSensorDisableStatus",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 7,
+          "length": 1,
+          "minimum_version": 22
+        },
+        {
+          "index": 9,
+          "name": "CPUTDP",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 56,
+          "length": 1,
+          "minimum_version": 10
+        },
+        {
+          "index": 10,
+          "name": "ThermalSensorFailStatus",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 57,
+          "length": 1,
+          "minimum_version": 10
+        },
+        {
+          "index": 11,
+          "name": "BoardSensorInfo",
+          "command": 255,
+          "bank_or_special": 3,
+          "register_or_count": 16,
+          "length": 0,
+          "minimum_version": 1
+        },
+        {
+          "index": 12,
+          "name": "VRSensorInfo",
+          "command": 255,
+          "bank_or_special": 4,
+          "register_or_count": 19,
+          "length": 0,
+          "minimum_version": 1
+        },
+        {
+          "index": 13,
+          "name": "FanInfo",
+          "command": 255,
+          "bank_or_special": 5,
+          "register_or_count": 48,
+          "length": 0,
+          "minimum_version": 1
+        }
+      ]
+    },
+    {
+      "name": "GPIO_CMD",
+      "rows": [
+        {
+          "index": 1,
+          "name": "THRO_CPU_L",
+          "command": 221,
+          "bank_or_special": 3,
+          "register_or_count": 0,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 2,
+          "name": "DGPU_LIMIT",
+          "command": 221,
+          "bank_or_special": 3,
+          "register_or_count": 1,
+          "length": 1,
+          "minimum_version": 19
+        }
+      ]
+    },
+    {
+      "name": "Other_CMD",
+      "rows": [
+        {
+          "index": 1,
+          "name": "RawDataFunctionStatus",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 6,
+          "length": 1,
+          "minimum_version": 7
+        },
+        {
+          "index": 2,
+          "name": "MBDesignPower",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 7,
+          "length": 1,
+          "minimum_version": 8
+        },
+        {
+          "index": 3,
+          "name": "SupportAdapterType",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 8,
+          "length": 1,
+          "minimum_version": 8
+        },
+        {
+          "index": 4,
+          "name": "PDNotEnoughWattStatus",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 11,
+          "length": 1,
+          "minimum_version": 11
+        },
+        {
+          "index": 5,
+          "name": "DCJackAdpaterIn",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 12,
+          "length": 1,
+          "minimum_version": 12
+        },
+        {
+          "index": 6,
+          "name": "BatteryHealthState",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 15,
+          "length": 1,
+          "minimum_version": 15
+        },
+        {
+          "index": 7,
+          "name": "HWProtectionPinSupported",
+          "command": 221,
+          "bank_or_special": 4,
+          "register_or_count": 19,
+          "length": 1,
+          "minimum_version": 19
+        }
+      ]
+    },
+    {
+      "name": "Consumer_CMD",
+      "rows": [
+        {
+          "index": 1,
+          "name": "MSFTHotBagStatus",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 18,
+          "length": 1,
+          "minimum_version": 20
+        },
+        {
+          "index": 2,
+          "name": "MSFTHotBagTriggerTemperature",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 19,
+          "length": 1,
+          "minimum_version": 20
+        },
+        {
+          "index": 3,
+          "name": "MSFTHotBagSourceTemperature",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 20,
+          "length": 1,
+          "minimum_version": 20
+        },
+        {
+          "index": 4,
+          "name": "OffsetofMSFTHotBagSourceTemperature",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 21,
+          "length": 1,
+          "minimum_version": 20
+        },
+        {
+          "index": 5,
+          "name": "MSFT Hot Bag Source Information",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 24,
+          "length": 1,
+          "minimum_version": 21
+        },
+        {
+          "index": 6,
+          "name": "Consumer_VRSensorInfo",
+          "command": 255,
+          "bank_or_special": 6,
+          "register_or_count": 0,
+          "length": 0,
+          "minimum_version": 19
+        },
+        {
+          "index": 7,
+          "name": "Last CPU Throttle Status Code",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 32,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 8,
+          "name": "Current CPU Throttle Status Code",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 33,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 9,
+          "name": "CPU Throttle Count",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 34,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 10,
+          "name": "Last GPU Limit Status Code",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 35,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 11,
+          "name": "Current GPU Limit Status Code",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 36,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 12,
+          "name": "GPU Limit Count",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 37,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 13,
+          "name": "Power Limit Information Status",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 38,
+          "length": 1,
+          "minimum_version": 24
+        },
+        {
+          "index": 14,
+          "name": "Power Limit Value",
+          "command": 255,
+          "bank_or_special": 7,
+          "register_or_count": 40,
+          "length": 0,
+          "minimum_version": 19
+        },
+        {
+          "index": 15,
+          "name": "Project Year",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 44,
+          "length": 1,
+          "minimum_version": 28
+        },
+        {
+          "index": 16,
+          "name": "Refresh Model Year",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 45,
+          "length": 1,
+          "minimum_version": 28
+        }
+      ]
+    }
+  ],
+  "nested": [
+    {
+      "name": "BoardSensorInfo_Items",
+      "rows": [
+        {
+          "index": 1,
+          "name": "Count",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 16,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 2,
+          "name": "Index",
+          "command": 221,
+          "bank_or_special": 130,
+          "register_or_count": 17,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 3,
+          "name": "Status",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 8,
+          "length": 1,
+          "minimum_version": 23
+        },
+        {
+          "index": 4,
+          "name": "Temperature",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 18,
+          "length": 1,
+          "minimum_version": 1
+        }
+      ]
+    },
+    {
+      "name": "VRSensorInfo_Items",
+      "rows": [
+        {
+          "index": 1,
+          "name": "Count",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 19,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 2,
+          "name": "Index",
+          "command": 221,
+          "bank_or_special": 130,
+          "register_or_count": 20,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 3,
+          "name": "Status",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 9,
+          "length": 1,
+          "minimum_version": 23
+        },
+        {
+          "index": 4,
+          "name": "Temperature",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 21,
+          "length": 1,
+          "minimum_version": 1
+        }
+      ]
+    },
+    {
+      "name": "FanInfo_Items",
+      "rows": [
+        {
+          "index": 1,
+          "name": "Count",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 48,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 2,
+          "name": "Index",
+          "command": 221,
+          "bank_or_special": 130,
+          "register_or_count": 50,
+          "length": 1,
+          "minimum_version": 1
+        },
+        {
+          "index": 3,
+          "name": "FanRpm",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 51,
+          "length": 2,
+          "minimum_version": 1
+        },
+        {
+          "index": 4,
+          "name": "FanPwmDuty",
+          "command": 221,
+          "bank_or_special": 2,
+          "register_or_count": 53,
+          "length": 1,
+          "minimum_version": 1
+        }
+      ]
+    },
+    {
+      "name": "VRSensorInfo_Items",
+      "rows": [
+        {
+          "index": 1,
+          "name": "Count",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 0,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 2,
+          "name": "Index",
+          "command": 221,
+          "bank_or_special": 136,
+          "register_or_count": 1,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 3,
+          "name": "Temperature",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 2,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 4,
+          "name": "ThresholdON",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 3,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 5,
+          "name": "ThresholdOFF",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 4,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 6,
+          "name": "AlertON",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 5,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 7,
+          "name": "AlertOFF",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 6,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 8,
+          "name": "OSShutdown",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 7,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 9,
+          "name": "ECForceShutdown",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 8,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 10,
+          "name": "GPUD2Point",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 9,
+          "length": 1,
+          "minimum_version": 19
+        },
+        {
+          "index": 11,
+          "name": "GPUD2ReleasePoint",
+          "command": 221,
+          "bank_or_special": 8,
+          "register_or_count": 10,
+          "length": 1,
+          "minimum_version": 19
+        }
+      ]
+    }
+  ]
+}

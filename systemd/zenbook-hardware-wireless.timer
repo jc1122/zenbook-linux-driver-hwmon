@@ -1,0 +1,13 @@
+# Managed by asus-healthytable-linux
+# SPDX-License-Identifier: GPL-2.0-only
+[Unit]
+Description=Refresh cached Zenbook Wi-Fi metadata
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=20s
+AccuracySec=1s
+Unit=zenbook-hardware-wireless.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,33 @@
+    _queryZenbookWireless(callback) {
+        if (this._zenbookWirelessPending) return;
+        this._zenbookWirelessPending = true;
+        let process = null, timer = 0;
+        const complete = data => {
+            if (timer) { GLib.source_remove(timer); timer = 0; }
+            if (this._zenbookWirelessProcess === process) this._zenbookWirelessProcess = null;
+            this._zenbookWirelessPending = false;
+            if (this._zenbookChargerDestroyed) return;
+            const names = Array.isArray(data?.interfaces) ? data.interfaces.map(x => x?.interface) : [];
+            this._zenbookWirelessDevices = [...new Set([...(this._zenbookWirelessDevices || []), ...names])];
+            for (const row of wirelessRows(data, this._zenbookWirelessDevices))
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        };
+        try {
+            process = Gio.Subprocess.new(['/usr/local/bin/zenbook-hardware', 'wireless'],
+                Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE);
+            this._zenbookWirelessProcess = process;
+            timer = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 12, () => {
+                timer = 0;
+                process.force_exit();
+                return GLib.SOURCE_REMOVE;
+            });
+            process.communicate_utf8_async(null, null, (source, result) => {
+                try {
+                    const [, stdout] = source.communicate_utf8_finish(result);
+                    if (!source.get_successful() || stdout.length > 262144) { complete(null); return; }
+                    complete(JSON.parse(stdout));
+                } catch (_) { complete(null); }
+            });
+        } catch (_) { complete(null); }
+    }
+

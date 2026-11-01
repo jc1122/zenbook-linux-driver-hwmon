@@ -1,0 +1,7 @@
+# Managed by asus-healthytable-linux
+# SPDX-License-Identifier: GPL-2.0-only
+[D-BUS Service]
+Name=org.zenbook.Hardware1
+Exec=/bin/false
+User=root
+SystemdService=zenbook-hardwared.service

@@ -1,0 +1,18 @@
+// Managed by asus-healthytable-linux
+// SPDX-License-Identifier: GPL-2.0-only
+// Members of zenbook-hw may read, read identifiers, change profile/charge
+// limit/keyboard backlight and hold bounded fan leases without a password.
+// EC/OEM, firmware/factory and driver load/unload are deliberately absent:
+// they keep their auth_admin default for everyone, members included.
+polkit.addRule(function(action, subject) {
+    var granted = [
+        "org.zenbook.hardware.read",
+        "org.zenbook.hardware.read-identifiers",
+        "org.zenbook.hardware.settings",
+        "org.zenbook.hardware.fan-lease"
+    ];
+    if (granted.indexOf(action.id) >= 0 && subject.isInGroup("zenbook-hw")) {
+        return polkit.Result.YES;
+    }
+    return polkit.Result.NOT_HANDLED;
+});

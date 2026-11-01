@@ -1,0 +1,23 @@
+    _queryZenbookFan(callback) {
+        if (this._zenbookFanPending) return;
+        this._zenbookFanPending = true;
+        const discover = this._zenbookFanPath ? Promise.resolve(this._zenbookFanPath) :
+            new FileModule.File('/sys/class/hwmon').list().then(files =>
+                Promise.all(files.map(async name => {
+                    const path = '/sys/class/hwmon/' + name;
+                    try { return (await new FileModule.File(path + '/name').read()).trim() === 'zenbook_ec' ? path : null; }
+                    catch (_) { return null; }
+                })).then(paths => paths.find(Boolean)));
+        discover.then(async path => {
+            if (!path || (await new FileModule.File(path + '/name').read()).trim() !== 'zenbook_ec') throw new Error('No native fan');
+            this._zenbookFanPath = path;
+            const data = JSON.parse(await new FileModule.File(path + '/fan_diagnostics').read());
+            if (!this._zenbookChargerDestroyed) for (const row of fanRows(data))
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).catch(() => {
+            this._zenbookFanPath = null;
+            if (!this._zenbookChargerDestroyed) for (const row of fanRows())
+                this._returnValue(callback, row.label, row.value, row.type, row.format);
+        }).finally(() => { this._zenbookFanPending = false; });
+    }
+

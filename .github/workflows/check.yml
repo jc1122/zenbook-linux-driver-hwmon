@@ -1,0 +1,127 @@
+# SPDX-License-Identifier: GPL-2.0-only
+name: check
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  userspace:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sudo apt-get update && sudo apt-get install -y python3-psutil python3-dbus python3-secretstorage python3-yaml
+      - run: python3 -m pip install --user --break-system-packages hypothesis==6.155.2
+      - run: make check
+  kernel:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sudo apt-get update && sudo apt-get install -y linux-headers-generic
+      - run: make module KDIR=$(find /usr/src -maxdepth 1 -type d -name 'linux-headers-*-generic' | sort -V | tail -1)
+
+  # Static-analysis gates. Blocking steps are clean on the current code, so they
+  # only catch regressions; advisory steps (continue-on-error) track backlogs.
+  # Gates, baselines and suppression rationale: docs/STATIC_ANALYSIS.md.
+  kernel-static:
+    runs-on: ubuntu-24.04
+    env:
+      # Pinned sparse revision (Ubuntu's packaged 0.6.4 predates current headers).
+      SPARSE_REPO: https://git.kernel.org/pub/scm/devel/sparse/sparse.git
+      SPARSE_SHA: 84ec0658c81db4ccc4aabc420d3dc118c2c6a310
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sudo apt-get update && sudo apt-get install -y linux-headers-generic
+      - name: Locate headers
+        run: echo "KDIR=$(find /usr/src -maxdepth 1 -type d -name 'linux-headers-*-generic' | sort -V | tail -1)" >> "$GITHUB_ENV"
+      - name: Build sparse
+        run: |
+          git init -q "$RUNNER_TEMP/sparse"
+          cd "$RUNNER_TEMP/sparse"
+          git fetch -q --depth 1 "$SPARSE_REPO" "$SPARSE_SHA"
+          git checkout -q FETCH_HEAD
+          make -j"$(nproc)" sparse
+          echo "SPARSE=$RUNNER_TEMP/sparse/sparse" >> "$GITHUB_ENV"
+      - name: W=1 -Werror build
+        run: make -C "$KDIR" M="$PWD/source" W=1 KCFLAGS=-Werror modules
+      - name: sparse
+        run: |
+          make -C "$KDIR" M="$PWD/source" clean
+          make -C "$KDIR" M="$PWD/source" C=2 CHECK="$SPARSE" modules 2>&1 | tee "$RUNNER_TEMP/sparse.log"
+          if grep -E '(^|/)(zenbook_healthytable\.c|healthytable_[a-z_]+\.h):[0-9]+(:[0-9]+)?: (warning|error):' "$RUNNER_TEMP/sparse.log"; then
+            echo "::error::sparse reported warnings in module sources"
+            exit 1
+          fi
+      - name: gcc -fanalyzer
+        run: |
+          make -C "$KDIR" M="$PWD/source" clean
+          make -C "$KDIR" M="$PWD/source" W=1 KCFLAGS="-fanalyzer -Wno-analyzer-too-complex -Werror" modules
+      - name: checkpatch (substantive types; style types excluded)
+        run: tools/ci/checkpatch.sh substantive
+      - name: checkpatch full (advisory style backlog)
+        continue-on-error: true
+        run: tools/ci/checkpatch.sh full
+
+  c-static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install cppcheck
+        # cppcheck-wheel 1.5.3 ships cppcheck 2.22.0 (the version the gate was qualified with).
+        run: python -m pip install cppcheck==1.5.3
+      - name: cppcheck warnings
+        run: |
+          cppcheck --enable=warning,portability --std=c11 --error-exitcode=1 --inline-suppr -q \
+            --suppressions-list=tools/ci/cppcheck-suppressions.txt \
+            -Iinclude -Isource lib/asus_healthytable.c source/*_test.c
+      - name: gcc -fanalyzer (userspace library)
+        # -Wno-analyzer-fd-leak: reviewed false positive on the pipe2() cleanup path.
+        run: |
+          gcc -std=c11 -O1 -Wall -Wextra -Werror -fanalyzer -Wno-analyzer-fd-leak \
+            -Iinclude -DASUS_HT_BRIDGE='"/x"' -c lib/asus_healthytable.c -o /dev/null
+
+  python-static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install bandit==1.9.4 ruff==0.15.16 mypy==2.1.0
+      - name: bandit medium+ (blocking; reviewed findings baselined)
+        # The baseline holds only wwan.py B314 (trusted D-Bus introspection XML,
+        # DOCTYPE/ENTITY rejected before parsing). Any new Medium/High finding fails.
+        run: bandit -r . -x ./.git,./test_*.py -ll -q -b tools/ci/bandit-baseline.json
+      - name: ruff correctness+security (blocking)
+        # Rule set and rationale in tools/ci/ruff.toml; clean on the current code.
+        run: ruff check --config tools/ci/ruff.toml --no-cache --output-format=github .
+      - name: ruff broad (advisory)
+        continue-on-error: true
+        run: ruff check --config tools/ci/ruff-advisory.toml --no-cache .
+      - name: mypy (advisory until type hints exist)
+        continue-on-error: true
+        run: mypy --ignore-missing-imports $(ls *.py | grep -v '^test_')
+
+  # Advisory: clang static analyzer (apt clang) over the userspace library and
+  # the protocol test harnesses, which include the shared healthytable_*.h.
+  # Reviewed false positives are documented in docs/STATIC_ANALYSIS.md.
+  clang-analyzer:
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sudo apt-get update && sudo apt-get install -y clang
+      - name: clang --analyze
+        run: tools/ci/clang-analyze.sh
+
+  # Blocking once test_fuzz_parsers.py exists; skipped with a notice before that.
+  parser-fuzz:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: sudo apt-get update && sudo apt-get install -y python3-psutil python3-dbus python3-secretstorage python3-yaml
+      - run: python3 -m pip install --user --break-system-packages hypothesis==6.155.2
+      - name: parser fuzz tests
+        run: tools/ci/run-fuzz-parsers.sh
